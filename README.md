@@ -1,2 +1,2 @@
-# notes
-Notes for Cloud Support and Devops Programme
+
+This repo contains notes for Cloud Support and Devops Programme
