@@ -1,5 +1,5 @@
 
-:blue_book: This repo contains notes for Cloud Support and Devops Bootcamp. 
+:blue_book: This repo contains notes for Cloud Support and DevOps Bootcamp. 
 
 ## Notes
 Below you will find links to the notes for each lesson.
