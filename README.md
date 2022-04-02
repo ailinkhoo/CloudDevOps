@@ -10,3 +10,8 @@ Below you will find links to the notes for each lesson.
 * Lesson 4: Azure Fundamentals
 * Lesson 5: Microsoft Azure Administrator
 * Lesson 6: Automating Everything
+
+## Resources
+- A Cloud Guru
+
+- [Linux Journey](https://linuxjourney.com/)
