@@ -9,8 +9,8 @@
 
 
 
-## Linux Essentials
-### Linux Distributions
+# Linux Essentials
+## Linux Distributions
 ***Linux*** is a open source and freely distributed operating system. Popular Linux distros are Ubuntu, Red Hat Enterprise Linux, Fedora, Debian
 
 **Linux distribution** comprises of: 
@@ -38,7 +38,7 @@
 All of these run on the hardware (laptop/desktop).
 
 
-### Embedded Linux
+## Embedded Linux
 
 An embedded system is a combination of hardware and software for a purpose. Android, Raspberry Pi, Smart TVs, Networking equipment (routers and switches) are examples of embedded systems.
 
@@ -53,7 +53,7 @@ An embedded system is a combination of hardware and software for a purpose. Andr
 | Hardware | 
 
 
-### Linux in the Cloud
+## Linux in the Cloud
 
 The cloud is a collection of data centers providing compute, application and storage services over the Internet. 
 
@@ -88,7 +88,7 @@ Server is something that provide client services. The types of open source serve
 **NGINX** is a web server that can also be used for reverse proxy, load balancing, mail proxy, and HTTP caching. Load balancing means that it can balance incoming requests (managing traffic). It can balance those requests between backend web hosts (NGINX host and Apache host). All of the requests come in through the load balancer and then are distributed out to the backend hosts.
 
 
-### Development Languages
+## Development Languages
 
 The common open source languages for application development are: 
 
@@ -100,7 +100,7 @@ The common open source languages for application development are:
 - **Python**: an interpreted general purpose programming language. Python source code is generally regarded as easier to read due to the structuring requirements.
 - **PHP**: PHP or the PHP Hypertext Processor is a programming language originally designed for web development.
 
-### Package Management Tools and Repositories
+## Package Management Tools and Repositories
 
 The system is comprised of many packages such as internet browsers, text editors, media players, etc. These packages are managed via package managers, which install and maintain the software on your system. Not all packages are installed through package managers though, you can commonly install packages directly from their source code. What are packages? You may know them as Chrome, Photoshop, etc and they are, but what they really are just lots and lots of files that have been compiled into one. 
 
