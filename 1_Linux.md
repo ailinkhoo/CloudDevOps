@@ -92,7 +92,7 @@ Server is something that provide client services. The types of open source serve
 
 The common open source languages for application development are: 
 
-- **Shell**: Runned by command line interpreter. Shell scripts are often used to automate strings of commands
+- **Shell**: Runned by command line interpreter. The shell is basically a program that takes your commands from the keyboard and sends them to the operating system to perform. Shell scripts are often used to automate strings of commands
 - **C**: Imperative programming language. A basic low-level programming language. As an example, you write the code for a web browser. You use C to write it. You then compile it and you're left with an executable something like Firefox.
 - **Java**: Object oriented general purpose programming language. 
 - **Javascript**: HTML, CSS and JavaScript make up the core technologies of the world wide web. Most web browsers have a dedicated JavaScript engine for JavaScript execution as it is a technology that enables interactive web pages.
@@ -101,3 +101,24 @@ The common open source languages for application development are:
 - **PHP**: PHP or the PHP Hypertext Processor is a programming language originally designed for web development.
 
 ### Package Management Tools and Repositories
+
+The system is comprised of many packages such as internet browsers, text editors, media players, etc. These packages are managed via package managers, which install and maintain the software on your system. Not all packages are installed through package managers though, you can commonly install packages directly from their source code. What are packages? You may know them as Chrome, Photoshop, etc and they are, but what they really are just lots and lots of files that have been compiled into one. 
+
+Popular package managers are 
+- **Debian Package (dpkg)** 
+  - **Advanced Package Tool (apt-get)** 
+- **Red Hat Package Manager (rpm)**
+  - **Yellow Dog Updater (yum)**
+ 
+*apt-get* is an extension of dpkg which solves the dependency problems of *dpkg*. It will look through the repositories and pull in all the dependencies, thus managing all of the installations of dpkg applications or packages on the system. *apt-get* permits the user to easily search for and install packages from repositories or directories containing software packages in an index. **Package Repositories** are a collection of packages. Your distribution already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system. On a Debian system, this sources file is the /etc/apt/sources.list file. Your machine will know to look there and check for any source repositories you added.
+
+
+
+
+
+
+
+
+
+
+
