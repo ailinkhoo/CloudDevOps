@@ -110,7 +110,7 @@ Popular package managers are
 - **Red Hat Package Manager (rpm)**
   - **Yellow Dog Updater (yum)**
  
-*apt-get* is an extension of dpkg which solves the dependency problems of *dpkg*. It will look through the repositories and pull in all the dependencies, thus managing all of the installations of dpkg applications or packages on the system. *apt-get* permits the user to easily search for and install packages from repositories or directories containing software packages in an index. **Package Repositories** are a collection of packages. Your distribution already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system. On a Debian system, this sources file is the /etc/apt/sources.list file. Your machine will know to look there and check for any source repositories you added.
+*apt-get* is an extension of *dpkg* which solves the dependency problems of *dpkg*. It will look through the repositories and pull in all the dependencies, thus managing all of the installations of *dpkg* applications or packages on the system. *apt-get* permits the user to easily search for and install packages from repositories or directories containing software packages in an index. **Package Repositories** are a collection of packages. Your distribution already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system. On a Debian system, this sources file is the /etc/apt/sources.list file. Your machine will know to look there and check for any source repositories you added.
 
 
 
