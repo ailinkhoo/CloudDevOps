@@ -15,3 +15,5 @@ Below you will find links to the notes for each lesson.
 - A Cloud Guru
 
 - [Linux Journey](https://linuxjourney.com/)
+
+- [Microsoft Learn] Introduction to Bash (https://docs.microsoft.com/en-us/learn/modules/bash-introduction/)
