@@ -113,12 +113,90 @@ Popular package managers are
 *apt-get* is an extension of *dpkg* which solves the dependency problems of *dpkg*. It will look through the repositories and pull in all the dependencies, thus managing all of the installations of *dpkg* applications or packages on the system. *apt-get* permits the user to easily search for and install packages from repositories or directories containing software packages in an index. **Package Repositories** are a collection of packages. Your distribution already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system. On a Debian system, this sources file is the /etc/apt/sources.list file. Your machine will know to look there and check for any source repositories you added.
 
 
+# Finding Your Way
 
+## CLI Basics
 
+### Basic Shell
+The standard Linux shell (BASH) is both a command line interpreter and a programming language.
 
+![Process](https://user-images.githubusercontent.com/97931452/161514481-52c412f7-bb8f-4038-8c3e-2540ab75660d.jpg)
 
+![Output](https://user-images.githubusercontent.com/97931452/161514570-59205708-62b1-4f86-9753-8f82149d52ed.jpg)
 
+We send input through Standard In or STDIN this is a stream going in. The interpreter is going to parse that input.  It is then going to execute it and provide us back a result. The output is then sent out to 1 of 2 streams Standard Out or STDOUT or Standard Error STDERR. Both screens will print to the screen by default. However, the output may be changed with redirection or pipeline.
 
+![Command prompt](https://user-images.githubusercontent.com/97931452/161514613-9714a5c5-b943-4354-a7c9-3590ef008c83.jpg)
+
+The command prompt usually consists of the current user, current host and working directory. The dollar sign denotes that the current user is unprivileged. 
+
+### Command Line Syntax
+
+The full syntax for a Bash command is:
+
+```Bash
+
+command [options] [arguments]
+
+```
+
+Bash treats the first string it encounters as a command. The following command uses Bash's ls (for "list") command to display the contents of the current working directory:
+
+```Bash
+
+ls
+
+```
+Bash commands are often accompanied by arguments. For example, you can include a path name in an ls command to list the contents of another directory:
+
+```Bash
+
+ls /etc
+
+```
+
+Most Bash commands have options for modifying how they work. Options, also called flags, give a command more specific instructions. As an example, files and directories whose names begin with a period are hidden from the user and are not displayed by ls. However, you can include the -a (for "all") flag in an ls command and see everything in the target directory:
+
+```Bash
+
+ls -a /etc
+```
+
+You can even combine flags for brevity. For example, rather than enter ls -a -l /etc to show all files and directories in Linux's /etc directory in long form, you can enter this instead:
+
+```Bash
+
+ls -al /etc
+
+```
+
+### Variables
+
+### Quoting
+
+## Getting Help
+
+### Man Pages 
+
+### Info Pages
+
+## Using Directories and Listing Files
+
+### Files and Directories
+
+### Hidden Files and Directories
+
+### Home Directories 
+
+### Absolute and Relative Paths
+
+## Working with Files
+
+### Creating, Moving, Deleting 
+
+### Case Sensitivity 
+
+### Simple Globbing
 
 
 
