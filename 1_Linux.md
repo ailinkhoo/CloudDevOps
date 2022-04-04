@@ -332,8 +332,24 @@ One thing to note, if you copy a file over to a directory that has the same file
 
 ```bash
 $ cp -i mycoolfile /home/pete/Pictures
+
 ``` 
   
+# Command Line
+  
+## Archiving Files on the Command Line
+
+## Searching and Extracting Data from Files
+  
+## Turning Commands into Scripts
+
+
+ 
+
+  
+  
+  
+
   
   
 
