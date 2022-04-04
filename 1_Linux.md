@@ -110,7 +110,7 @@ Popular package managers are
 - **Red Hat Package Manager (rpm)**
   - **Yellow Dog Updater (yum)**
  
-*apt-get* is an extension of *dpkg* which solves the dependency problems of *dpkg*. It will look through the repositories and pull in all the dependencies, thus managing all of the installations of *dpkg* applications or packages on the system. *apt-get* permits the user to easily search for and install packages from repositories or directories containing software packages in an index. **Package Repositories** are a collection of packages. Your distribution already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system. On a Debian system, this sources file is the /etc/apt/sources.list file. Your machine will know to look there and check for any source repositories you added.
+`apt-get` is an extension of `dpkg` which solves the dependency problems of `dpkg`. It will look through the repositories and pull in all the dependencies, thus managing all of the installations of `dpkg` applications or packages on the system. `apt-get` permits the user to easily search for and install packages from repositories or directories containing software packages in an index. **Package Repositories** are a collection of packages. Your distribution already comes with pre-approved sources to get packages from and this is how it installs all the base packages you see on your system. On a Debian system, this sources file is the /etc/apt/sources.list file. Your machine will know to look there and check for any source repositories you added.
 
 
 # Finding Your Way
@@ -140,14 +140,14 @@ command [options] [arguments]
 
 ```
 
-Bash treats the first string it encounters as a command. The following command uses Bash's ls (for "list") command to display the contents of the current working directory:
+Bash treats the first string it encounters as a command. The following command uses Bash's `ls` (for "list") command to display the contents of the current working directory:
 
 ```Bash
 
 ls
 
 ```
-Bash commands are often accompanied by arguments. For example, you can include a path name in an ls command to list the contents of another directory:
+Bash commands are often accompanied by arguments. For example, you can include a path name in an `ls` command to list the contents of another directory:
 
 ```Bash
 
@@ -155,14 +155,14 @@ ls /etc
 
 ```
 
-Most Bash commands have options for modifying how they work. Options, also called flags, give a command more specific instructions. As an example, files and directories whose names begin with a period are hidden from the user and are not displayed by ls. However, you can include the -a (for "all") flag in an ls command and see everything in the target directory:
+Most Bash commands have options for modifying how they work. Options, also called flags, give a command more specific instructions. As an example, files and directories whose names begin with a period are hidden from the user and are not displayed by `ls`. However, you can include the `-a` (for "all") flag in an ls command and see everything in the target directory:
 
 ```Bash
 
 ls -a /etc
 ```
 
-You can even combine flags for brevity. For example, rather than enter ls -a -l /etc to show all files and directories in Linux's /etc directory in long form, you can enter this instead:
+You can even combine flags for brevity. For example, rather than enter `ls -a -l /etc` to show all files and directories in Linux's /etc directory in long form, you can enter this instead:
 
 ```Bash
 
@@ -172,13 +172,53 @@ ls -al /etc
 
 ### Variables
 
+Variables may contain a number, character or a string of characters. These variables do not need to be declared, nor are there data types. They are simply assigned. 
+
+```Bash
+
+variable1="This is a variable." 
+echo $variable1
+
+```
+
+```Bash
+
+var1=$(ls) 
+echo $var1
+
+```
+Set `var1` equals and instead of using quotes, a dollar sign parentheses, which is going to execute anything that occurs in that dollar sign parentheses. So this is in place execution of the `ls` command. Now, if I echo out `var1`. This is what `ls` was at the time, it was executed upon variable assignment. If I were to remove one of these files now and echo out `var1`, it would still show all 4.
+
+#### Bourne Shell Variable 
+
+-`$HOME` the current user's home directory
+-`$PS1` the primary prompt string 
+-`$PATH` a colon-seperated list of directories where the shell looks for command
+ 
 ### Quoting
+Quoting preserves input that contains special characters or spaces. 
+
+- **Escape Character** is a a non-quoted backslash `\` and it preserves the literal value of the next following character       with a single exception of newline. Newline is represented by \ followed by an N.
+  
+- **Single Quotes** preserve the literal value of every character contained within the quotes, including the escape             character. Let's say we already know we have a variable in var1. Let's echo out and we're going to use single quotes, 'this   is $var1', and we'll close that single quote. Now, when I hit Enter, it's going to preserve the literal value of the dollar   sign var1. It's not going to expand it out as the variable itself.
+
+- Double Quotes preserve the literal value of most characters contained within the quotes, exceptions for the dollar sign for   variables, single quotes for single quoting, and the backslash for escaping a character.
+
+![image](https://user-images.githubusercontent.com/97931452/161565757-cecd1fd6-92e1-478e-92fa-8988a057a216.png)
+
 
 ## Getting Help
 
 ### Man Pages 
 
+Man pages are the traditional package documentation for application usage. They are typically installed when you install a package. So if we install a package to do some task or to perform some process. The man page for that package will typically be installed at the same time. This gives us the ability to take a look at that documentation and make sure that we're using it in a manner consistent with its design.
+
+Tip: To search through the man page, enter forward slash and the keyword, it's going to highlight every instance of the keyword in this man page
+
 ### Info Pages
+
+Info pages are additional documentation with more robust capability in detail than a man page. Additionally, info uses a structure for linking these pages together and they may be assembled into a larger collection.
+
 
 ## Using Directories and Listing Files
 
