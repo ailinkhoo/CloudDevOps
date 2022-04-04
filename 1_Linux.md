@@ -224,19 +224,116 @@ Info pages are additional documentation with more robust capability in detail th
 
 ### Files and Directories
 
+The Filesystem Hierarchy Standard (FHS) defines structure of the file systems on Linux. 
+
+| Directory  | Name | 
+| ------------- | ------------- | 
+| /  | the root directory | 
+| /bin | user binaries |
+| /boot | static boot files |
+| /dev | device files | 
+| /etc | configuration files |
+| /home | home directories |
+| /lib | device files | 
+| /mnt | temporary mount files |
+| /opt | optional packages |
+| /proc | kernel and process files | 
+| /root | root user home directory |
+| /run | application state files |
+| /sbin | system administration binaries | 
+| /srv | service data |
+| /tmp | temporary files |
+| /usr | user binaries | 
+| /var | variable data files |
+
+`/` is the top of the file system, equivalent of the C drive in Windows. '/bin' contains commands that can be used by user. `/boot` contains boot files to boot the system.  `/etc` contains configuration files. `/mnt` mount drives. /tmp contains transient files.
+
+### Moving around ###
+
+- `cd .` (current directory). This is the directory you are currently in.
+- `cd ..` (parent directory). Takes you to the directory above your current.
+- `cd ../..` (parent directory). Go up two levels above current.
+- `cd ~` (home directory). This directory defaults to your “home directory”. Such as /home/pete.
+- `cd -` (previous directory). This will take you to the previous directory you were just at.
+
 ### Hidden Files and Directories
+
+Files and directories that are hidden from basic listing by preceding their name with a period. Hidden files may be listed via `ls` using the `-a` option, to show all files. 
 
 ### Home Directories 
 
+A home directory is typically created for every ordinary user on a Linux system under `/home`.
+
+``` bash
+cat /etc/passwd
+```
+![image](https://user-images.githubusercontent.com/97931452/161575462-6a408802-1d8e-4ee3-8893-446f679c407f.png)
+
+
+So if I take a look at the file and I'm using the cat command here `/etc/passwd`, this is a file that contains all of the users on a Linux system. These are going to be unique and so the reason we have this is because if we're using non-local authentication, we could have multiple users named michael, each one needs to have a unique ID. `/etc/passwd` just shows us the local users for this Linux system. And so the username maps to the user ID 1000, `/home/ailin`, this is the home directory. `/bin/bash` is the default shell that I received. So here's an example of a service account, sshd. It has the UID of 109. It has the home directory of `/run/sshd`, so files it generates will be placed there and remember /run is application data and then it's log in shell is `/usr/sbin/nologin`. It doesn't get a login shell. This is a shell that prevents login. `/etc/passwd` is basically the master mapping on a Linux system of users to user IDs, which are all unique, as well as the home directory and the login shell. So this is where the home directory is defined.
+
 ### Absolute and Relative Paths
 
-## Working with Files
+The path to the unique location of a file or directory. 
+
+![Path](https://user-images.githubusercontent.com/97931452/161577992-aaef35e0-7712-4b69-a4bb-817d360f530b.jpg)
+
+If working directory is user, then
+
+- Relative path: file1
+- Absolute path: /home/user/file1
+
+## Working with Files and Directories
 
 ### Creating, Moving, Deleting 
 
+- `mkdir <NAME>` Create new directory.
+- `cp -r` <SOURCE> <DESTINATION> Copy a directory.
+- `mv <SOURCE> <DESTINATION>` Move a directory. 
+- `rm -r <DIRECTORY>` Delete a directory.
+  
+- `touch <NAME>` Create a new file. 
+- `cp <SOURCE> <DESTINATION>` Copy a file. 
+- `mv <FILE> <NEW LOCATION>` Move a file. 
+- `rm <FILE>` Delete a file. 
+  
+
 ### Case Sensitivity 
+  
+Most of the common Linux file systems are case sensitive. Lower-case and upper-case letters have different ASCII representation. 
 
 ### Simple Globbing
 
+Globbing is primarily used to match patterns in file names or text by using a wildcard character to create the pattern.
+  
+- `*` the wildcard of wildcards, it's used to represent all single characters or any string.
+  
+![image](https://user-images.githubusercontent.com/97931452/161581370-87271ac8-b129-4ffd-8ee2-256d6d7a43c0.png)
 
+- `?` used to represent one character
+  
+![image](https://user-images.githubusercontent.com/97931452/161581201-92e967be-ebed-4277-aa21-6869d495fb17.png)
+
+- `[]` used to represent any character from range within the brackets
+  
+![image](https://user-images.githubusercontent.com/97931452/161581433-64deda82-8593-4026-8b27-4ff6933a316f.png)
+
+```bash
+$ cp *.jpg /home/pete/Pictures
+```
+This will copy all files with the .jpg extension in your current directory to the Pictures directory.
+
+A useful command is to use the `-r` flag, this will recursively copy the files and directories within a directory.
+ 
+```bash
+$ cp -r Pumpkin/ /home/pete/Documents
+```
+One thing to note, if you copy a file over to a directory that has the same filename, the file will be overwritten with whatever you are copying over. If you have a file that you don’t want to get accidentally overwritten. You can use the `-i` flag (interactive) to prompt you before overwriting a file.
+
+```bash
+$ cp -i mycoolfile /home/pete/Pictures
+``` 
+  
+  
+  
 
