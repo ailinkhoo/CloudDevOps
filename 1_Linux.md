@@ -11,13 +11,11 @@
 2. [Finding Your Way](#finding-your-way)
    - [CLI Basics](#cli-basics)
    - [Getting Help](#getting-help)
-   - [Using Directories and Listing Files](#using-directories)
-   - [Working with Files and Directories](#working-directories)
-   - 
-
-4. [Command Line](#command-line)
-5. [Operating Systems](#operating-systems)
-6. [Security](#security)
+   - [Using Directories and Listing Files](#using-directories-and-listing-files)
+   - [Working with Files and Directories](#working-with-files-and-directories)
+3. [Command Line](#command-line)
+4. [Operating Systems](#operating-systems)
+5. [Security](#security)
 
 
 
