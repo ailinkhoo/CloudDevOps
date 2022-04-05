@@ -196,7 +196,7 @@ Set `var1` equals and instead of using quotes, a dollar sign parentheses, which 
 - `$PATH` a colon-seperated list of directories where the shell looks for command. In other words, the `$PATH` variable is an environment variable that contains all of    the directories that are automatically searched when we try to call a program. 
 try: `echo $PATH | tr ":" "\n"`
 
-### Lab: 
+#### Lab: 
 - **Examine the current `$PATH` variable**
 
 <img width="871" alt="Variable lab1" src="https://user-images.githubusercontent.com/97931452/161654317-54c84337-6093-4fde-9dbe-37d8227bb24b.PNG">
@@ -409,7 +409,7 @@ $ cp -i mycoolfile /home/pete/Pictures
   
 ## Archiving Files on the Command Line
   
-Archive to make backups, save space. So archiving is the process of combining multiple files and or directories into a single file. This is generally done as part of a backup process. The most common utility for creating and working with archives in Linux is `tar`, which is short for tape archive.
+**Archive** to make backups, save space. So archiving is the process of combining multiple files and or directories into a single file. This is generally done as part of a backup process. The most common utility for creating and working with archives in Linux is `tar`, which is short for tape archive.
   
 **Options**
   
@@ -422,10 +422,40 @@ Archive to make backups, save space. So archiving is the process of combining mu
  `-t` list the contents of an archive
   
  `-f` read from or write to a file 
+ 
+**Compression** is the process of reducing the amount of storage that files or archives consume. Compression is typically used during archiving to reduce storage space. The three most common compression algorithms are: 
   
+- **gzip** the default compression used by `tar` via (`-z`), a good balance of speed and size reduction
   
+- **bzip2** an alternative compression algorithm, typically slower than gzip due to higher compression
+
+- **zip** the algorithm used by zip command, and all-in-one compression and archiving utility popular with other operatiing systems.   
 
 ## Searching and Extracting Data from Files
+
+### Command Line Pipes   
+
+**Piping** is the process of using the output of one command as the input for another. 
+
+- `|` The pipe symbol  
+
+- `grep` Utility that searches any input files, selecting lines that match one or more patterns. 
+  
+Tip: If I wanted to rerun say this command here, wc -l american-english.
+It was the last time I ran the wc command,
+not including when it was piped.
+I can use a bang or a exclamation point
+wc and it will rerun the last command I
+used starting with wc.
+I can use a bang and cat.
+It's going to rerun the last time I started a command with cat.
+
+
+### I/O Redirection 
+  
+**I/O** redirection may be used to feed input to a command from a file or to send the output of a command to a file. 
+
+![image](https://user-images.githubusercontent.com/97931452/161719158-e77850ae-e2b9-4d86-bcff-d352ff46b91a.png)
 
   
 Regular Expressions Cheatsheet: 
@@ -436,7 +466,7 @@ https://regexone.com/
 ## Turning Commands into Scripts
 
 
- 
+_[Back to the top](#table-of-contents)_
 
   
   
