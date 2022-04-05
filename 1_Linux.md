@@ -416,7 +416,13 @@ The most common utility for creating and working with archives in Linux is
 tar, which is short for tape archive.
 
 ## Searching and Extracting Data from Files
+
   
+Regular Expressions Cheatsheet: 
+  
+https://regexr.com/
+https://regexone.com/
+
 ## Turning Commands into Scripts
 
 
