@@ -515,13 +515,30 @@ echo -e "Hello $name!\n"
 
 ### Common Text Editors 
 
-**vim**
+**vim** 
 
+To fire up vim just type:
+   
+```bash
+vim
+```
+   
+**Useful commands**
+
+To navigate a text document in vim, use the following keys:
+
+`h` or the left arrow - will move you left one character
+`k` or the up arrow - will move you up one line
+`j` or the down arrow - will move you down one line
+`l` or the right arrow - will move you right one character
+   
 `gg` Go to the first line of the file
  
 `G` Go to the last line of the file 
   
 `10G` Go to the 10th line of the file
+
+Now you may have noticed if you tried to type something you wouldn't be able to. That's because you are in command mode. This can get pretty confusing especially if you just want to open a file and enter text. The command mode is used for when you enter commands like h,j,k.l etc. To insert text you'll need to enter insert mode first.
 
 `i` Insert at cursor
   
@@ -529,14 +546,23 @@ echo -e "Hello $name!\n"
   
 `o` Append line under cursor
 
+Notice how when you type any of these insertion modes, you'll see that vim has entered insert mode at the bottom of the shell. To exit insert mode and go back to command mode, just hit the Esc key.
+
 `:w` Write file 
   
 `:q` Quit vim
 
 `:wq` Write and quit
-  
 
-  _[Back to the top](#table-of-contents)_
+`u` undo your last action
+   
+`Ctrl-r` redo your last action
+
+
+   
+
+
+_[Back to the top](#table-of-contents)_
 
   
   
