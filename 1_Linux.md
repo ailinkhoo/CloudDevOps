@@ -191,10 +191,77 @@ Set `var1` equals and instead of using quotes, a dollar sign parentheses, which 
 
 #### Bourne Shell Variable 
 
--`$HOME` the current user's home directory
--`$PS1` the primary prompt string 
--`$PATH` a colon-seperated list of directories where the shell looks for command
- 
+- `$HOME` the current user's home directory
+- `$PS1` the primary prompt string 
+- `$PATH` a colon-seperated list of directories where the shell looks for command. In other words, the `$PATH` variable is an environment variable that contains all of    the directories that are automatically searched when we try to call a program. 
+try: `echo $PATH | tr ":" "\n"`
+
+### Lab: 
+- **Examine the current `$PATH` variable**
+
+<img width="871" alt="Variable lab1" src="https://user-images.githubusercontent.com/97931452/161654317-54c84337-6093-4fde-9dbe-37d8227bb24b.PNG">
+
+1. Determine the current working directory.
+`pwd`
+
+2. List the contents of the current directory.
+`ls`
+
+3. List the contents of the scripts folder.
+`ls scripts/`
+
+4. Run the test.sh script, specifying the path to it.
+`./scripts/test.sh`
+
+5. Attempt to run the test.sh script without specifying the path to it.
+`test.sh`
+
+6. List the current environment variables, and locate the $PATH variable.
+`env`
+
+7. Examine the $PATH variable.
+`echo $PATH`
+
+- **Append the Path to the scripts Directory to the $PATH Variable**
+
+<img width="270" alt="Variable lab2" src="https://user-images.githubusercontent.com/97931452/161654345-abf43f69-490e-4e06-9db2-4db769dd830e.PNG">
+
+1. Run the following command:
+`PATH="$PATH:$HOME/scripts"`
+
+2. Run the test.sh script again without specifying the path.
+`test.sh`
+
+- **Make the New Path Persist**
+
+<img width="943" alt="Variable lab3" src="https://user-images.githubusercontent.com/97931452/161654364-410d7aeb-4333-4671-a7ce-407e634ad7f0.PNG">
+
+
+1. View the contents of the .profile file.
+`cat .profile`
+
+2. View the $PATH variable.
+`echo $PATH`
+
+3. Source the .profile file.
+`source .profile`
+
+4. Modify the ~/.profile file to make our change permanent.
+`echo 'PATH="$PATH:$HOME/scripts"' >> ~/.profile`
+
+5. Source the .profile file again.
+`. .profile`
+
+6. View the $PATH variable again.
+`echo $PATH`
+
+7. Run the test.sh script without specifying the path again.
+`test.sh`
+
+- [Source command](https://linuxize.com/post/bash-source-command/) 
+- [Login shell](https://linuxhandbook.com/login-shell/)
+- 
+
 ### Quoting
 Quoting preserves input that contains special characters or spaces. 
 
@@ -272,6 +339,9 @@ cat /etc/passwd
 
 So if I take a look at the file and I'm using the cat command here `/etc/passwd`, this is a file that contains all of the users on a Linux system. These are going to be unique and so the reason we have this is because if we're using non-local authentication, we could have multiple users named michael, each one needs to have a unique ID. `/etc/passwd` just shows us the local users for this Linux system. And so the username maps to the user ID 1000, `/home/ailin`, this is the home directory. `/bin/bash` is the default shell that I received. So here's an example of a service account, sshd. It has the UID of 109. It has the home directory of `/run/sshd`, so files it generates will be placed there and remember /run is application data and then it's log in shell is `/usr/sbin/nologin`. It doesn't get a login shell. This is a shell that prevents login. `/etc/passwd` is basically the master mapping on a Linux system of users to user IDs, which are all unique, as well as the home directory and the login shell. So this is where the home directory is defined.
 
+![etc-passwd-file-explained](https://user-images.githubusercontent.com/97931452/161656889-5ed3ecff-fd33-4e25-8740-317d10192ef9.png)
+
+
 ### Absolute and Relative Paths
 
 The path to the unique location of a file or directory. 
@@ -338,6 +408,12 @@ $ cp -i mycoolfile /home/pete/Pictures
 # Command Line
   
 ## Archiving Files on the Command Line
+  
+Archive to make backups, save space. So archiving is the process of combining multiple files and or
+directories into a single file.
+This is generally done as part of a backup process.
+The most common utility for creating and working with archives in Linux is
+tar, which is short for tape archive.
 
 ## Searching and Extracting Data from Files
   
