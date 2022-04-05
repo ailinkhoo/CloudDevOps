@@ -409,11 +409,21 @@ $ cp -i mycoolfile /home/pete/Pictures
   
 ## Archiving Files on the Command Line
   
-Archive to make backups, save space. So archiving is the process of combining multiple files and or
-directories into a single file.
-This is generally done as part of a backup process.
-The most common utility for creating and working with archives in Linux is
-tar, which is short for tape archive.
+Archive to make backups, save space. So archiving is the process of combining multiple files and or directories into a single file. This is generally done as part of a backup process. The most common utility for creating and working with archives in Linux is `tar`, which is short for tape archive.
+  
+**Options**
+  
+ `-c` create archive
+  
+ `-x` extract archive
+  
+ `-r` append to an archive
+ 
+ `-t` list the contents of an archive
+  
+ `-f` read from or write to a file 
+  
+  
 
 ## Searching and Extracting Data from Files
 
