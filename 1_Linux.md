@@ -2,6 +2,7 @@
 
 ### Table of contents
 1. [Linux Essentials](#linux-essentials)
+   - [Linux Distributions](#linux_distributions)
 2. [Finding Your Way](#finding-your-way)
 3. [Command Line](#command-line)
 4. [Operating Systems](#operating-systems)
@@ -453,20 +454,80 @@ It's going to rerun the last time I started a command with cat.
 
 ### I/O Redirection 
   
-**I/O** redirection may be used to feed input to a command from a file or to send the output of a command to a file. 
+**I/O redirection** may be used to feed input to a command from a file or to send the output of a command to a file. 
 
-![image](https://user-images.githubusercontent.com/97931452/161719158-e77850ae-e2b9-4d86-bcff-d352ff46b91a.png)
+`[COMMAND] < [FILE]` Read input from a file
+                  
+`[COMMAND] > [FILE]` Send output to a file
+ 
+### Basic Regular Expressions  
 
-  
+**Regular expressions** (or regex) are used to match patterns in text. 
+
+`"^Apple"` Match start of line
+ 
+`"Apple$"` Match end of line
+
+`"^Apple$"` Match start and end of line
+
+`"^Apple|Ball"` Match either string or character
+
+`"Ap*le"` Match A, followed by zero *or* more p's, followed by le
+
+`"Ap+le"` Match A, followed by one *or* more p's, followed by le
+
+`"Ap?le"` Match A, followed by maybe a p, followed by le
+
+`"Ap{p-z}le"` Match Ap, followed by a letter between p and z, followed by le
+
 Regular Expressions Cheatsheet: 
-  
+
 https://regexr.com/
+
 https://regexone.com/
 
 ## Turning Commands into Scripts
 
+### Basic Shell Scripting
 
-_[Back to the top](#table-of-contents)_
+**Anatomy of a Shell Script**
+
+```bash 
+#!/bin/bash
+
+echo "Please enter your name: "
+read name 
+echo -e "Hello $name!\n"
+
+```
+
+`#!/bin/bash` This line defines the interpretor to be used by the shell script
+
+
+### Common Text Editors 
+
+**vim**
+
+`gg` Go to the first line of the file
+ 
+`G` Go to the last line of the file 
+  
+`10G` Go to the 10th line of the file
+
+`i` Insert at cursor
+  
+`l` Insert at start of line
+  
+`o` Append line under cursor
+
+`:w` Write file 
+  
+`:q` Quit vim
+
+`:wq` Write and quit
+  
+
+  _[Back to the top](#table-of-contents)_
 
   
   
