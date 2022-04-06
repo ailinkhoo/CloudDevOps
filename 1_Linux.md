@@ -14,8 +14,11 @@
    - [Using Directories and Listing Files](#using-directories-and-listing-files)
    - [Working with Files and Directories](#working-with-files-and-directories)
 3. [Command Line](#command-line)
-4. [Operating Systems](#operating-systems)
-5. [Security](#security)
+   - [Archiving Files on the Command Line](#archiving-files-on-the-command-line)
+   - [Searching and Extracting Data from Files](#searching-and-extracting-data-from-files)
+   - [Turning Commands into Scripts](#turning-commands-into-scripts)
+5. [Operating Systems](#operating-systems)
+6. [Security](#security)
 
 
 
@@ -323,7 +326,9 @@ The Filesystem Hierarchy Standard (FHS) defines structure of the file systems on
 | /usr | user binaries | 
 | /var | variable data files |
 
-`/` is the top of the file system, equivalent of the C drive in Windows. '/bin' contains commands that can be used by user. `/boot` contains boot files to boot the system.  `/etc` contains configuration files. `/mnt` mount drives. /tmp contains transient files.
+`/` is the top of the file system, equivalent of the C drive in Windows. `/bin` contains commands that can be used by user. `/boot` contains boot files to boot the system.  `/etc` contains configuration files. `/mnt` mount drives. `/tmp` contains transient files.
+
+![Linux directories](https://user-images.githubusercontent.com/97931452/161870304-9b865c92-4a33-4e54-a2f4-b812352ac919.jpg)
 
 ### Moving around ###
 
@@ -367,16 +372,21 @@ If working directory is user, then
 
 ### Creating, Moving, Deleting 
 
-- `mkdir <NAME>` Create new directory.
-- `cp -r` <SOURCE> <DESTINATION> Copy a directory.
-- `mv <SOURCE> <DESTINATION>` Move a directory. 
-- `rm -r <DIRECTORY>` Delete a directory.
+`mkdir <NAME>` Create new directory
+
+`cp -r <SOURCE> <DESTINATION>` Copy a directory
+
+`mv <SOURCE> <DESTINATION>` Move a directory
+
+`rm -r <DIRECTORY>` Delete a directory
   
-- `touch <NAME>` Create a new file. 
-- `cp <SOURCE> <DESTINATION>` Copy a file. 
-- `mv <FILE> <NEW LOCATION>` Move a file. 
-- `rm <FILE>` Delete a file. 
-  
+`touch <NAME>` Create a new file
+
+`cp <SOURCE> <DESTINATION>` Copy a file
+
+`mv <FILE> <NEW LOCATION>` Move a file
+
+`rm <FILE>` Delete a file
 
 ### Case Sensitivity 
   
@@ -538,7 +548,7 @@ To navigate a text document in vim, use the following keys:
   
 `10G` Go to the 10th line of the file
 
-Now you may have noticed if you tried to type something you wouldn't be able to. That's because you are in command mode. This can get pretty confusing especially if you just want to open a file and enter text. The command mode is used for when you enter commands like h,j,k.l etc. To insert text you'll need to enter insert mode first.
+Now you may have noticed if you tried to type something you wouldn't be able to. That's because you are in *command mode*. This can get pretty confusing especially if you just want to open a file and enter text. The command mode is used for when you enter commands like `h,j,k.l` etc. To insert text you'll need to enter *insert mode* first.
 
 `i` Insert at cursor
   
