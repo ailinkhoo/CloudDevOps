@@ -18,7 +18,7 @@
   - [Searching and Extracting Data from Files](#searching-and-extracting-data-from-files)
   - [Turning Commands into Scripts](#turning-commands-into-scripts)
 - [Operating Systems](#operating-systems)
-  - [Choosing an OS](#choosing-an-OS)
+  - [Choosing an OS](#choosing-an-os)
   - [Computer Hardware](#computer-hardware)
   - [Data Storage](#data-storage)
   - [Network](#network)
@@ -578,19 +578,66 @@ Notice how when you type any of these insertion modes, you'll see that vim has e
 
 ### Differences between Operating Systems
 
+| OS | Linux | macOS | Windows |
+| --- | --- | --- | --- |
+| Open Source | Yes | No | No |   
+| Purchase Price | Free | Free | Varies |  
+| Supported Hardware | Excellent | Proprietary | Good |
+| Shell Interpreter | Bash | Bash | Powershell |  
+| GUI | Multiple | macOS | Windows |
+
+Linux has enterprise licensing and support like RedHat. macOS is only available on proprietary hardware. 
+
 ### Distribution Lifecycle
 
+**Standard distribution release**, also known as the point release or a stable release is made available after a development period. During this development period, all software is updated to a specific version and then frozen.
+It is then tested to verify that all software versions work well together and then updates are released to address important bugs and security concerns. Now on the other end of the spectrum, we have more of a cutting edge and that is the **rolling release**. So some distributions are always kept up to date using small and constant updates to the core of the OS and then new versions of the software are added as they arrive. These are generally more cutting edge and you are constantly updating the software. So for instance, Arch Linux is an example of that. There is no Arch Linux 18.04, you know, there is only Arch Linux. It's always the newest version. Whereas you have a Ubuntu 18.04, you have Red Hat Enterprise Linux 7.5, Red Hat Enterprise Linux 8.0. 
+
 ## Computer Hardware
+
+Hardware is the physical component used for computing. 
+
+| Hardware | Function | 
+| --- | --- | 
+| Central Processing Unit (CPU) | Processes computer functions and performs calculations | 
+| Random Access Memory (RAM) | High-performance, volatile storage | 
+| Secondary Storage (HDD/SSD) | Persistent storage for data not currently in use | 
+| Network Interface Card (NIC) | Permits connections to a network | 
+| Input Devices (Mouse/Keyboard) | Send data into the computer via human interaction | 
+| Output Devices (Monitor) | Send information from the computer to the user | 
+
+![Drivers](https://user-images.githubusercontent.com/97931452/162002614-f9c17ccb-b273-41a2-b4dc-e07f1a544c05.jpg)
+
+Hardware drivers reside in the running kernel (or are loaded as a module) and enable the operating system to use the hardware. The kernel in itself is a monolithic piece of software, when we want to add support for a new type of keyboard, we don't write this code directly into the kernel code. Just as we wouldn't meld a bike rack to our car. Kernel modules are pieces of code that can be loaded and unloaded into the kernel on demand. They allow us to extend the functionality of the kernel without actually adding to the core kernel code.
 
 ## Data Storage 
 
 ### Programs and Configuration
 
+Everything in /etc is configuration-related. 
+
 ### Processes
+
+Processes are the programs that are running on your machine. They are managed by the kernel and each process has an ID associated with it called the **process ID (PID)**. This **PID** is assigned in the order that processes are created.
+`ps` command to see a list of running processes.
+
+![image](https://user-images.githubusercontent.com/97931452/162022926-426133bc-5f37-4cac-a2de-1243d58f4400.png)
+
+This shows you a quick snapshot of the current processes:
+
+**PID**: Process ID
+**TTY**: Controlling terminal associated with the process 
+**TIME**: Total CPU usage time
+**CMD**: Name of executable/command
+
+Another very useful command is the `top` command, `top` gives you real time information about the processes running on your system instead of a snapshot. By default you'll get a refresh every 10 seconds. It is a useful tool to see what processes are taking up a lot of your resources.
+
 
 ### System Messaging 
 
 ### Logging 
+
+The services, kernel, daemons, etc on your system are constantly doing something, this data is actually sent to be saved on your system in the form of logs. This allows us to have a human readable journal of the events that are happening on our system. This data is usually kept in the `/var` directory where we keep our variable data, such as logs. How are these messages getting received on your system? There is a service called **syslog** that sends this information to the system logger.
 
 ### View Running Processes 
 
