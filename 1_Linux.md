@@ -1,24 +1,28 @@
 >[Back to Index](README.md)
 
 ### Table of contents
-1. [Linux Essentials](#linux-essentials)
-   - [Linux Distributions](#linux-distributions)
-   - [Embedded Linux](#embedded-linux)
-   - [Linux in the Cloud](#linux-in-the-cloud)
-   - [Major Open Source Applications](#major-open-source-applications)
-   - [Development Languages](#development-languages)
-   - [Package Management Tools and Repositories](#package-management-tools-and-repositories)
-2. [Finding Your Way](#finding-your-way)
-   - [CLI Basics](#cli-basics)
-   - [Getting Help](#getting-help)
-   - [Using Directories and Listing Files](#using-directories-and-listing-files)
-   - [Working with Files and Directories](#working-with-files-and-directories)
-3. [Command Line](#command-line)
-   - [Archiving Files on the Command Line](#archiving-files-on-the-command-line)
-   - [Searching and Extracting Data from Files](#searching-and-extracting-data-from-files)
-   - [Turning Commands into Scripts](#turning-commands-into-scripts)
-5. [Operating Systems](#operating-systems)
-6. [Security](#security)
+- [Linux Essentials](#linux-essentials)
+  - [Linux Distributions](#linux-distributions)
+  - [Embedded Linux](#embedded-linux)
+  - [Linux in the Cloud](#linux-in-the-cloud)
+  - [Major Open Source Applications](#major-open-source-applications)
+  - [Development Languages](#development-languages)
+  - [Package Management Tools and Repositories](#package-management-tools-and-repositories)
+- [Finding Your Way](#finding-your-way)
+  - [CLI Basics](#cli-basics)
+  - [Getting Help](#getting-help)
+  - [Using Directories and Listing Files](#using-directories-and-listing-files)
+  - [Working with Files and Directories](#working-with-files-and-directories)
+- [Command Line](#command-line)
+  - [Archiving Files on the Command Line](#archiving-files-on-the-command-line)
+  - [Searching and Extracting Data from Files](#searching-and-extracting-data-from-files)
+  - [Turning Commands into Scripts](#turning-commands-into-scripts)
+- [Operating Systems](#operating-systems)
+  - [Choosing an OS](#choosing-an-OS)
+  - [Computer Hardware](#computer-hardware)
+  - [Data Storage](#data-storage)
+  - [Network](#network)
+- [Security](#security)
 
 
 
@@ -567,6 +571,40 @@ Notice how when you type any of these insertion modes, you'll see that vim has e
 `u` undo your last action
    
 `Ctrl-r` redo your last action
+
+# Operating Systems
+
+## Choosing an OS
+
+### Differences between Operating Systems
+
+### Distribution Lifecycle
+
+## Computer Hardware
+
+## Data Storage 
+
+### Programs and Configuration
+
+### Processes
+
+### System Messaging 
+
+### Logging 
+
+### View Running Processes 
+
+## Network 
+
+### Networks and Routers 
+
+### DNS Client Config 
+
+### Network Configuration
+
+
+
+
 
 
    
