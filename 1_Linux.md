@@ -626,8 +626,11 @@ Processes are the programs that are running on your machine. They are managed by
 This shows you a quick snapshot of the current processes:
 
 **PID**: Process ID
-**TTY**: Controlling terminal associated with the process 
+
+**TTY**: Controlling terminal associated with the process
+
 **TIME**: Total CPU usage time
+
 **CMD**: Name of executable/command
 
 Another very useful command is the `top` command, `top` gives you real time information about the processes running on your system instead of a snapshot. By default you'll get a refresh every 10 seconds. It is a useful tool to see what processes are taking up a lot of your resources.
