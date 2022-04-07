@@ -99,7 +99,7 @@ Server is something that provide client services. The types of open source serve
 - File sharing server (Samba, NFS)
 - Private cloud (ownCloud, Nextcloud)
 
-![NGINX](https://user-images.githubusercontent.com/97931452/161305940-16a61ee1-3721-4d24-80c2-6c87ac1e1c82.jpg)
+<img src="https://user-images.githubusercontent.com/97931452/161305940-16a61ee1-3721-4d24-80c2-6c87ac1e1c82.jpg" width=80% height=80%>
 
 
 **NGINX** is a web server that can also be used for reverse proxy, load balancing, mail proxy, and HTTP caching. Load balancing means that it can balance incoming requests (managing traffic). It can balance those requests between backend web hosts (NGINX host and Apache host). All of the requests come in through the load balancer and then are distributed out to the backend hosts.
@@ -137,13 +137,13 @@ Popular package managers are
 ### Basic Shell
 The standard Linux shell (BASH) is both a command line interpreter and a programming language.
 
-![Process](https://user-images.githubusercontent.com/97931452/161514481-52c412f7-bb8f-4038-8c3e-2540ab75660d.jpg)
+<img src="https://user-images.githubusercontent.com/97931452/161514481-52c412f7-bb8f-4038-8c3e-2540ab75660d.jpg" width=80% height=80%>
 
-![Output](https://user-images.githubusercontent.com/97931452/161514570-59205708-62b1-4f86-9753-8f82149d52ed.jpg)
+<img src="https://user-images.githubusercontent.com/97931452/161514570-59205708-62b1-4f86-9753-8f82149d52ed.jpg" width=80% height=80%>
 
 We send input through Standard In or STDIN this is a stream going in. The interpreter is going to parse that input.  It is then going to execute it and provide us back a result. The output is then sent out to 1 of 2 streams Standard Out or STDOUT or Standard Error STDERR. Both screens will print to the screen by default. However, the output may be changed with redirection or pipeline.
 
-![Command prompt](https://user-images.githubusercontent.com/97931452/161514613-9714a5c5-b943-4354-a7c9-3590ef008c83.jpg)
+<img src="https://user-images.githubusercontent.com/97931452/161514613-9714a5c5-b943-4354-a7c9-3590ef008c83.jpg" width=50% height=50%>
 
 The command prompt usually consists of the current user, current host and working directory. The dollar sign denotes that the current user is unprivileged. 
 
@@ -277,7 +277,7 @@ try: `echo $PATH | tr ":" "\n"`
 
 - [Source command](https://linuxize.com/post/bash-source-command/) 
 - [Login shell](https://linuxhandbook.com/login-shell/)
-- 
+
 
 ### Quoting
 Quoting preserves input that contains special characters or spaces. 
@@ -365,7 +365,7 @@ So if I take a look at the file and I'm using the cat command here `/etc/passwd`
 
 The path to the unique location of a file or directory. 
 
-![Path](https://user-images.githubusercontent.com/97931452/161577992-aaef35e0-7712-4b69-a4bb-817d360f530b.jpg)
+<img src="https://user-images.githubusercontent.com/97931452/161577992-aaef35e0-7712-4b69-a4bb-817d360f530b.jpg" width=50% height=50%>
 
 If working directory is user, then
 
@@ -606,7 +606,8 @@ Hardware is the physical component used for computing.
 | Input Devices (Mouse/Keyboard) | Send data into the computer via human interaction | 
 | Output Devices (Monitor) | Send information from the computer to the user | 
 
-![Drivers](https://user-images.githubusercontent.com/97931452/162002614-f9c17ccb-b273-41a2-b4dc-e07f1a544c05.jpg)
+
+<img src="https://user-images.githubusercontent.com/97931452/162002614-f9c17ccb-b273-41a2-b4dc-e07f1a544c05.jpg" width=50% height=50%>
 
 Hardware drivers reside in the running kernel (or are loaded as a module) and enable the operating system to use the hardware. The kernel in itself is a monolithic piece of software, when we want to add support for a new type of keyboard, we don't write this code directly into the kernel code. Just as we wouldn't meld a bike rack to our car. Kernel modules are pieces of code that can be loaded and unloaded into the kernel on demand. They allow us to extend the functionality of the kernel without actually adding to the core kernel code.
 
