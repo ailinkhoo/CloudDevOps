@@ -330,9 +330,19 @@ The Filesystem Hierarchy Standard (FHS) defines structure of the file systems on
 | /usr | user binaries | 
 | /var | variable data files |
 
-`/` is the top of the file system, equivalent of the C drive in Windows. `/bin` contains commands that can be used by user. `/boot` contains boot files to boot the system.  `/etc` contains configuration files. `/mnt` mount drives. `/tmp` contains transient files.
-
 ![Linux directories](https://user-images.githubusercontent.com/97931452/161870304-9b865c92-4a33-4e54-a2f4-b812352ac919.jpg)
+
+`/` is the top of the file system, equivalent of the C drive in Windows. `/bin` contains commands that can be used by user. `/boot` contains boot files to boot the system.  `/etc` contains configuration files. `/mnt` mount drives. `/tmp` contains transient files. You can have many filesystem on your disks, depending on how they are partitioned. `ext4` is the most current version of the native Linux filesystems. 
+
+![image](https://user-images.githubusercontent.com/97931452/162121745-bb600338-4091-468d-88be-8fc8ab4691ce.png)
+
+The `df` command reports file system disk space usage and other details about your disk.
+
+Disks are comprised of **partitions** that help us organize our data. You can have multiple partitions on a disk and they can't overlap each other. If there is space that is not allocated to a partition, then it is known as free space. The types of partitions depend on your **partition table**. Inside a partition, you can have a filesystem or dedicate a partition to other things like swap. Every disk will have a **partition table**, this table tells the system how the disk is partitioned. This table tells you where partitions begin and end, which partitions are bootable, what sectors of the disk are allocated to what partition, etc. There are two main partition table schemes used, Master Boot Record (MBR) and GUID Partition Table (GPT).
+
+![image](https://user-images.githubusercontent.com/97931452/162125230-8c434bfb-2523-49be-bde2-96df8f604391.png)
+
+`sudo parted -l` to check partition tables. 
 
 ### Moving around ###
 
