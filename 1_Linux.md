@@ -338,7 +338,7 @@ The Filesystem Hierarchy Standard (FHS) defines structure of the file systems on
 
 The `df` command reports file system disk space usage and other details about your disk.
 
-Disks are comprised of **partitions** that help us organize our data. You can have multiple partitions on a disk and they can't overlap each other. If there is space that is not allocated to a partition, then it is known as free space. The types of partitions depend on your **partition table**. Inside a partition, you can have a filesystem or dedicate a partition to other things like swap. Every disk will have a **partition table**, this table tells the system how the disk is partitioned. This table tells you where partitions begin and end, which partitions are bootable, what sectors of the disk are allocated to what partition, etc. There are two main partition table schemes used, Master Boot Record (MBR) and GUID Partition Table (GPT).
+Disks are comprised of **partitions** that help us organize our data. You can have multiple partitions on a disk and they can't overlap each other. If there is space that is not allocated to a partition, then it is known as free space. The types of partitions depend on your **partition table**. Inside a partition, you can have a filesystem or dedicate a partition to other things like swap (used to allocate virtual memory to our system). Every disk will have a **partition table**, this table tells the system how the disk is partitioned. This table tells you where partitions begin and end, which partitions are bootable, what sectors of the disk are allocated to what partition, etc. There are two main partition table schemes used, Master Boot Record (MBR) and GUID Partition Table (GPT).
 
 ![image](https://user-images.githubusercontent.com/97931452/162125230-8c434bfb-2523-49be-bde2-96df8f604391.png)
 
@@ -625,14 +625,58 @@ Hardware drivers reside in the running kernel (or are loaded as a module) and en
 
 ### Programs and Configuration
 
-Everything in /etc is configuration-related. 
+| File  | Description | 
+| --- | --- | 
+| System Boot Configuration `/boot` | Contains boot loader configuration files and parameters, Linux kernel, and initial RAM disk |
+| Partition Mount Points `/etc/fstab` | Contains a list of partitions to mount automatically and where they mount in the filesystem |
+| User Attributes `/etc/passwd` | Contains a list of local users and their attributes |
+| Groups  `/etc/group` | Contains a list of local users and attributes |
+| Hosts File  `/etc/hosts` | Contains a list of IP addresses and the hostname we want the system to associate with them |
+| Application Configuration `/etc/<APPLICATION>` | Applications place their respective configuration files in the `/etc` directory, normally as a .conf file | 
+ 
+These are common locations for system and configuration data. Everything in `/etc` is configuration-related. 
+
+
+![image](https://user-images.githubusercontent.com/97931452/162192512-a61a10cf-4c87-4c99-b72d-73c98bbb6e25.png)
+
+- `/boot` directory contrains  `GRUB` folder which is the default boot loader. There are config, initial RAM disks, system map and vmlinuz file which is kernel 5.4.0-91. Use `uname -r` to see which kernel I'm currently running. The kernel has a corresponding system map and initial RAM disk. 
+`cat config-5.4.0-91-generic` to see the configuration parameters that have been set.
+
+![image](https://user-images.githubusercontent.com/97931452/162193527-15ec3c68-938e-4f69-a289-0acd6f1815b9.png)
+
+- When we want to automatically mount filesystems at startup we can add them to a file called `/etc/fstab` (pronounced "eff es tab") short for filesystem table. This file contains a permanent list of filesystems that are mounted.
+
+![image](https://user-images.githubusercontent.com/97931452/162199372-6249630e-b342-4279-ba8f-0719deb212e1.png)
+
+- Each line represents one filesystem, the fields are:
+
+  - UUID - Device identifier
+  - Mount point - Directory the filesystem is mounted to
+  - Filesystem type
+  - Options - other mount options
+  - Dump - used by the dump utility to decide when to make a backup, you should just default to 0
+  - Pass - Used by fsck to decide what order filesystems should be checked, if the value is 0, it will not be checked
+
+- `blkid`: To view the UUIDS on your system for block devices
+
+![image](https://user-images.githubusercontent.com/97931452/162200389-96191640-9794-4bfa-84a3-9bb25c02a39a.png)
+
+- `/etc/hosts` a mapping of IP addresses to host names.
+
+![image](https://user-images.githubusercontent.com/97931452/162209939-eb2c2c3f-2c19-4ff6-9d29-51b204b9f6e2.png)
+
+- `ll /etc/` configuration files for applications
+
+![image](https://user-images.githubusercontent.com/97931452/162218261-d5a9bc76-e646-4bf8-811c-da115a56b5f2.png)
+
 
 ### Processes
 
 Processes are the programs that are running on your machine. They are managed by the kernel and each process has an ID associated with it called the **process ID (PID)**. This **PID** is assigned in the order that processes are created.
-`ps` command to see a list of running processes.
 
-![image](https://user-images.githubusercontent.com/97931452/162022926-426133bc-5f37-4cac-a2de-1243d58f4400.png)
+![image](https://user-images.githubusercontent.com/97931452/162226381-ff0205e7-bba9-4589-891b-362effadd225.png)
+
+`ps` command to see a list of running processes.
 
 This shows you a quick snapshot of the current processes:
 
@@ -644,31 +688,49 @@ This shows you a quick snapshot of the current processes:
 
 **CMD**: Name of executable/command
 
-Another very useful command is the `top` command, `top` gives you real time information about the processes running on your system instead of a snapshot. By default you'll get a refresh every 10 seconds. It is a useful tool to see what processes are taking up a lot of your resources.
+`ps aux` 
 
+**USER**: The effective user (the one whose access we are using)
+**PID**: Process ID
+**%CPU**: CPU time used divided by the time the process has been running
+**%MEM**: Ratio of the process's resident set size to the physical memory on the machine
+**VSZ**: Virtual memory usage of the entire process
+**RSS**: Resident set size, the non-swapped physical memory that a task has used
+**TTY**: Controlling terminal associated with the process
+**STAT**: Process status code
+**START**: Start time of the process
+**TIME**: Total CPU usage time
+**COMMAND**: Name of executable/command
+
+`top` command gives you real time information about the processes running on your system instead of a snapshot. By default you'll get a refresh every 10 seconds. It is a useful tool to see what processes are taking up a lot of your resources.
+
+Process information is stored in a special filesystem known as the **/proc filesystem**.
+
+`ls /proc` You should see multiple values in here, there are sub-directories for every PID. 
+
+`cat /proc/<PID>/status` You should see running process information and well as more detailed information. 
+
+`/sys` provides system information regarding attached hardware
+
+`/dev` contains device files 
 
 ### System Messaging 
 
+System messages are messages from the running kernel. 
+
+![image](https://user-images.githubusercontent.com/97931452/162237914-b5665fba-8431-44fa-bea4-be513a76c35d.png)
+
 ### Logging 
 
-The services, kernel, daemons, etc on your system are constantly doing something, this data is actually sent to be saved on your system in the form of logs. This allows us to have a human readable journal of the events that are happening on our system. This data is usually kept in the `/var` directory where we keep our variable data, such as logs. How are these messages getting received on your system? There is a service called **syslog** that sends this information to the system logger.
-
-### View Running Processes 
+The services, kernel, daemons, etc on your system are constantly doing something, this data is actually sent to be saved on your system in the form of logs. This allows us to have a human readable journal of the events that are happening on our system. This data is usually kept in the `/var` directory where we keep our variable data, such as logs. How are these messages getting received on your system? There is a service called **syslog** that performs log message collection. 
 
 ## Network 
 
 ### Networks and Routers 
 
-### DNS Client Config 
+### DNS Client Configuration
 
 ### Network Configuration
-
-
-
-
-
-
-   
 
 
 _[Back to the top](#table-of-contents)_
