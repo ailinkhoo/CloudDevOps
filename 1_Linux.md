@@ -37,11 +37,7 @@
   
 - **GNU core**
 
-  The GNU core utilities are basic file shell and text manipulation utilities of the GNU operating system. They are foundational utilities which are expected to exist   on every operating system. Examples include setting and changing file permissions and ownerships, concatenating, and writing files, giving exit statuses, listing       directories and files, being able to move between directories and files. One of the utilities provided is  
-  ```bash
-  ls
-  ```
-  which lists directories.
+  The GNU core utilities are basic file shell and text manipulation utilities of the GNU operating system. They are foundational utilities which are expected to exist   on every operating system. Examples include setting and changing file permissions and ownerships, concatenating, and writing files, giving exit statuses, listing directories and files, being able to move between directories and files. One of the utilities provided is `ls` which lists directories.
   
 - **X server (optional)**
 
