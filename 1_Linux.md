@@ -724,7 +724,27 @@ The services, kernel, daemons, etc on your system are constantly doing something
 
 ### Networks and Routers 
 
+A *network* is a group of connected devices that are able to communicate with each other. 
+
+**ISP (Internet Service Provider)**:  the company you pay to get Internet at your house.
+
+**Router**: The router allows each machine on your network to connect to the Internet. In most modern routers, you can connect via wireless or an Ethernet cable.
+
+**WAN**: Wide Area Network, this is what we call the network that encompasses everything between your router and a wider network such the Internet.
+
+**WLAN**: Wireless Local Area Network, this is the network between your router and any wireless devices you may have such as laptops.
+
+**LAN**: Local Area Network, this is the network between your router and any wired devices such as Desktop PCs.
+
+**Host**: Each machine on a network is known as a host.
+
 ### DNS Client Configuration
+
+**DNS (Domain Name System)** maps domain names to their respective IP address. 
+
+`/etc/resolv.conf` This configuration file is used to determine which hosts to use for DNS queries 
+
+`/etc/hosts` Used for statically mapping IP addressed to hostnames 
 
 ### Network Configuration
 
