@@ -738,6 +738,54 @@ A *network* is a group of connected devices that are able to communicate with ea
 
 **Host**: Each machine on a network is known as a host.
 
+```bash 
+ailin@Ailin:~$ ip addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: bond0: <BROADCAST,MULTICAST,MASTER> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether be:2a:8f:2c:ef:69 brd ff:ff:ff:ff:ff:ff
+3: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 62:f4:29:85:3d:da brd ff:ff:ff:ff:ff:ff
+4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:2f:38:3a brd ff:ff:ff:ff:ff:ff
+    inet 192.168.85.123/20 brd 192.168.95.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::215:5dff:fe2f:383a/64 scope link
+       valid_lft forever preferred_lft forever
+5: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+6: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+ailin@Ailin:~$ ip -4 addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 192.168.85.123/20 brd 192.168.95.255 scope global eth0
+       valid_lft forever preferred_lft forever
+ailin@Ailin:~$ ip -6 addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 state UNKNOWN qlen 1000
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 state UP qlen 1000
+    inet6 fe80::215:5dff:fe2f:383a/64 scope link
+       valid_lft forever preferred_lft forever
+    
+```
+`ip addr show` To display a list of all network interfaces and the associated ip address
+
+If you want to display only IPv4 or IPv6 ip addresses, use `ip -4 addr` or `ip -6 addr`
+
+An IP address is separated into octets by the periods. So there are 4 octets in an IPv4 address. An octet is 8 bits and 8 bits actually equal 1 byte, so we also refer to an IPv4 address as having 4 bytes.
+
+A **subnet** is a group of hosts with IP addresses that are similar in a certain way. These hosts usually are in a proximate location from each other and you can easily send data to and from hosts on the same subnet. For example, all hosts with an IP address that starts with 123.45.67 would be on the same subnet. My host has an IP of 123.45.67.8 and Patty's has an IP of 123.45.67.9. The common numbers are my network prefix and the 8 and 9 are our hosts, therefore my network is the same as Patty's. A subnet is divided into a network prefix, such as 123.45.67.0 and a subnet mask.
+
+
+
 ### DNS Client Configuration
 
 **DNS (Domain Name System)** maps domain names to their respective IP address. 
