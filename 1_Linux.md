@@ -750,7 +750,7 @@ A [subnet](https://linuxjourney.com/lesson/subnets) is a group of hosts with IP 
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
-        inet6 fe80::202:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
+        inet6 fe80::202:5dff:fe0f:2fcd  prefixlen 64  scopeid 0x20<link>
         ether 00:15:5d:1f:2f:cd  txqueuelen 1000  (Ethernet)
         RX packets 261  bytes 59825 (59.8 KB)
         RX errors 0  dropped 0  overruns 0  frame 0
@@ -821,7 +821,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
-        inet6 fe80::202:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
+        inet6 fe80::202:5dff:fe0f:2fcd  prefixlen 64  scopeid 0x20<link>
         ether 00:15:5d:1f:2f:cd  txqueuelen 1000  (Ethernet)
         RX packets 2256  bytes 457832 (457.8 KB)
         RX errors 0  dropped 0  overruns 0  frame 0
