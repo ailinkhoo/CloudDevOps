@@ -738,43 +738,6 @@ A *network* is a group of connected devices that are able to communicate with ea
 
 **Host**: Each machine on a network is known as a host.
 
-```bash 
-ailin@Ailin:~$ ip addr show
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-2: bond0: <BROADCAST,MULTICAST,MASTER> mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether be:2a:8f:2c:ef:69 brd ff:ff:ff:ff:ff:ff
-3: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 62:f4:29:85:3d:da brd ff:ff:ff:ff:ff:ff
-4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:15:5d:2f:38:3a brd ff:ff:ff:ff:ff:ff
-    inet 192.168.85.123/20 brd 192.168.95.255 scope global eth0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::215:5dff:fe2f:383a/64 scope link
-       valid_lft forever preferred_lft forever
-5: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
-    link/ipip 0.0.0.0 brd 0.0.0.0
-6: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
-    link/sit 0.0.0.0 brd 0.0.0.0
-ailin@Ailin:~$ ip -4 addr
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    inet 192.168.85.123/20 brd 192.168.95.255 scope global eth0
-       valid_lft forever preferred_lft forever
-ailin@Ailin:~$ ip -6 addr
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 state UNKNOWN qlen 1000
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-4: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 state UP qlen 1000
-    inet6 fe80::215:5dff:fe2f:383a/64 scope link
-       valid_lft forever preferred_lft forever
-    
 ```
 `ip addr show` To display a list of all network interfaces and the associated ip address
 
@@ -786,9 +749,9 @@ A [subnet](https://linuxjourney.com/lesson/subnets) is a group of hosts with IP 
 
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.91.79  netmask 255.255.240.0  broadcast 192.168.95.255
-        inet6 fe80::215:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
-        ether 00:15:5d:2f:3f:cd  txqueuelen 1000  (Ethernet)
+        inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
+        inet6 fe80::202:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:1f:2f:cd  txqueuelen 1000  (Ethernet)
         RX packets 261  bytes 59825 (59.8 KB)
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 14  bytes 1076 (1.0 KB)
@@ -858,8 +821,8 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
-        inet6 fe80::215:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
-        ether 00:15:5d:2f:3f:cd  txqueuelen 1000  (Ethernet)
+        inet6 fe80::202:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:1f:2f:cd  txqueuelen 1000  (Ethernet)
         RX packets 2256  bytes 457832 (457.8 KB)
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 60  bytes 5428 (5.4 KB)
