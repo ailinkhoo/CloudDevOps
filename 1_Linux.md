@@ -778,30 +778,109 @@ ailin@Ailin:~$ ip -6 addr
 ```
 `ip addr show` To display a list of all network interfaces and the associated ip address
 
-If you want to display only IPv4 or IPv6 ip addresses, use `ip -4 addr` or `ip -6 addr`
+If you want to display only [IPv4](https://linuxjourney.com/lesson/ipv4) or IPv6 ip addresses, use `ip -4 addr` or `ip -6 addr`
 
-An IP address is separated into octets by the periods. So there are 4 octets in an IPv4 address. An octet is 8 bits and 8 bits actually equal 1 byte, so we also refer to an IPv4 address as having 4 bytes.
+A [subnet](https://linuxjourney.com/lesson/subnets) is a group of hosts with IP addresses that are similar in a certain way. 
 
-A **subnet** is a group of hosts with IP addresses that are similar in a certain way. These hosts usually are in a proximate location from each other and you can easily send data to and from hosts on the same subnet. For example, all hosts with an IP address that starts with 123.45.67 would be on the same subnet. My host has an IP of 123.45.67.8 and Patty's has an IP of 123.45.67.9. The common numbers are my network prefix and the 8 and 9 are our hosts, therefore my network is the same as Patty's. A subnet is divided into a network prefix, such as 123.45.67.0 and a subnet mask.
+```bash 
 
+ailin@Ailin:~$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.91.79  netmask 255.255.240.0  broadcast 192.168.95.255
+        inet6 fe80::215:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:2f:3f:cd  txqueuelen 1000  (Ethernet)
+        RX packets 261  bytes 59825 (59.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 14  bytes 1076 (1.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+[CIDR](https://linuxjourney.com/lesson/classless-interdomain-routing-cidr) is used to represent a subnet mask in a more compact way. You may see subnets notated in CIDR notation, where a subnet such as the 10.42.3.0/255.255.255.0 is written as 10.42.3.0/24 which just means it includes both the subnet prefix and the subnet mask.
+
+`ping`  command test connectivity. 
+
+```bash
+ailin@Ailin:~$ ping -c 1 google.com
+PING google.com (142.250.199.46) 56(84) bytes of data.
+64 bytes from kul08s12-in-f14.1e100.net (142.250.199.46): icmp_seq=1 ttl=117 time=5.26 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 5.256/5.256/5.256/0.000 ms
+
+```
 
 ### DNS Client Configuration
 
-**DNS (Domain Name System)** maps domain names to their respective IP address. 
+**DNS (Domain Name System)** is a protocol that maps domain names to their respective IP address. 
 
-`/etc/resolv.conf` This configuration file is used to determine which hosts to use for DNS queries 
+![image](https://user-images.githubusercontent.com/97931452/162598762-29a00038-090f-4dde-88c2-e4f589656070.png)
 
-`/etc/hosts` Used for statically mapping IP addressed to hostnames 
+`/etc/resolv.conf` This configuration file is used to determine which hosts to use for DNS queries. The name server is `127.0.0.53` which the Linux installation is going to ask to translate domain names into IP addresses.
+
+![image](https://user-images.githubusercontent.com/97931452/162599871-304e95cd-83cc-4fca-b18c-6b6f3c17a689.png)
+
+`/etc/hosts` Before our machine actually hits DNS to do a query, it first looks locally on our machines.The `/etc/hosts` file contains mappings of some hostnames to IP addresses.
 
 ### Network Configuration
 
+`ip route show` and `sudo route -n` shows the current [routing table](https://linuxjourney.com/lesson/routing-table). If we wanted to send a packet to IP address 151.123.43.6, our routing table doesn't know where that goes, so it denotes it as 0.0.0.0 and therefore routes our packet to the primary gateway which is aptly named as being a Gateway to another network.
+
+``` bash
+
+ailin@Ailin:~$ ip route show
+default via 192.168.80.1 dev eth0
+192.168.80.0/20 dev eth0 proto kernel scope link src 192.168.91.79
+
+```
+
+```bash 
+
+ailin@Ailin:~$ sudo route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.80.1    0.0.0.0         UG    0      0        0 eth0
+192.168.80.0    0.0.0.0         255.255.240.0   U     0      0        0 eth0
+
+```
+
+```bash
+
+ailin@Ailin:~$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.91.79  netmask 255.255.240.0  broadcast 192.168.95.255
+        inet6 fe80::215:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:2f:3f:cd  txqueuelen 1000  (Ethernet)
+        RX packets 2256  bytes 457832 (457.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 60  bytes 5428 (5.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 4  bytes 156 (156.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4  bytes 156 (156.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 _[Back to the top](#table-of-contents)_
 
   
-  
-  
+```
+
+A network interface is how the kernel links up the software side of networking to the hardware side. `ifconfig` command allows us to configure our network interfaces. It shows the interface name `eth0` (first Ethernet card in the machine) and `lo` (loopback interface) which is the internal network that Linux uses to communicate to itself. 
+
 
   
   
