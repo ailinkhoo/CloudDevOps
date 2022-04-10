@@ -838,8 +838,8 @@ rtt min/avg/max/mdev = 5.256/5.256/5.256/0.000 ms
 ``` bash
 
 ailin@Ailin:~$ ip route show
-default via 192.168.80.1 dev eth0
-192.168.80.0/20 dev eth0 proto kernel scope link src 192.168.91.79
+default via 192.168.8.1 dev eth0
+192.168.8.0/20 dev eth0 proto kernel scope link src 192.168.91.79
 
 ```
 
@@ -848,8 +848,8 @@ default via 192.168.80.1 dev eth0
 ailin@Ailin:~$ sudo route -n
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-0.0.0.0         192.168.80.1    0.0.0.0         UG    0      0        0 eth0
-192.168.80.0    0.0.0.0         255.255.240.0   U     0      0        0 eth0
+0.0.0.0         192.168.8.1    0.0.0.0         UG    0      0        0 eth0
+192.168.8.0    0.0.0.0         255.255.240.0   U     0      0        0 eth0
 
 ```
 
@@ -857,7 +857,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.91.79  netmask 255.255.240.0  broadcast 192.168.95.255
+        inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
         inet6 fe80::215:5dff:fe2f:3fcd  prefixlen 64  scopeid 0x20<link>
         ether 00:15:5d:2f:3f:cd  txqueuelen 1000  (Ethernet)
         RX packets 2256  bytes 457832 (457.8 KB)
