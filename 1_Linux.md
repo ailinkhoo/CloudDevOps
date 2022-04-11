@@ -23,6 +23,11 @@
   - [Data Storage](#data-storage)
   - [Network](#network)
 - [Security](#security)
+  - [Root and Standard Users](#root-and-standard-users)
+  - [System Users](#system-users)
+  - [User and Group Commands](#user-and-group-commands)
+  - [User IDs](#user-ids)
+  - [File and Directory Permissions and Ownership](#file-and-directory-permissions-and-ownership)
 
 
 
@@ -841,6 +846,125 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65530
 
 A network interface is how the kernel links up the software side of networking to the hardware side. `ifconfig` command allows us to configure our network interfaces. It shows the interface name `eth0` (first Ethernet card in the machine) and `lo` (loopback interface) which is the internal network that Linux uses to communicate to itself. 
 
+# Security
+
+## Root and Standard Users
+
+**Standard user** accounts are provided a login shell, a home directory, limited permissions for viewing system configurations, and no permission for modifying system configurations. 
+
+`sudo` super-user do
+The use of `sudo` provides a mechanism whereby a user account is permitted the ability to run a command with elevated permissions.
+
+**Root User** account has full access to all permissions on the system, and is used for system-level administration tasks. 
+
+`/etc/passwd` 
+
+`khooailin:x:1000:1000:,,,:/home/khooailin:/bin/bash`
+
+| Attribute | Meaning | 
+| --- | --- | 
+| Username | unique login name | 
+| Password | empty, moved to /etc/shadow |
+| User ID | unique number ID |
+| Group ID | ID of primary group | 
+| GECOS | Long name | 
+| Home directory | Login directory | 
+| Login Shell | Log in interpretor | 
+
+`/etc/shadow`
+
+`khooailin:hashed password:19039:0:99999:7:::`
+
+| Attribute | Meaning | 
+| --- | --- | 
+| Username | unique login name | 
+| Password | hashed password value |
+| lastchanged | days since password change |
+| Minimum | Minimum number of days between password changes | 
+| Maximum | Maximum number of days between password changes | 
+| Warn | Number of days before password expiration to warn user | 
+| Inactive | Number of days since expiration | 
+| Expire | Absolute expiration date | 
+
+
+
+`/etc/group`
+`ailin:x:1000:` `ailin` is the primary member of the group, therefore it is not shown under group member.
+`docker:x:1001:ailin` 
+
+| Attribute | Meaning | 
+| --- | --- |  
+| Group | unique group name |
+| Password | empty |
+| Group ID (GID) | unique group ID number | 
+| Group List | a comma deliniated list of usernames that belong to the group | 
+
+
+```bash
+
+ailin@Ailin:~$ groups ailin
+ailin : ailin adm dialout cdrom floppy sudo audio dip video plugdev netdev docker 
+
+```
+
+`groups` command will list the groups the user are member of. First group is the primary group. 
+
+```bash 
+
+[cloud_user@ip-10-0-1-10 ~]$ pwd
+/home/cloud_user
+[cloud_user@ip-10-0-1-10 ~]$ id sysuser
+uid=1002(sysuser) gid=1002(sysuser) groups=1002(sysuser)
+,1003(finance),1004(sales)
+[cloud_user@ip-10-0-1-10 ~]$ getent passwd sysuser
+sysuser:x:1002:1002::/home/sysuser:/bin/bash 
+[cloud_user@ip-10-0-1-10 ~]$ cat /etc/passwd | grep sysu
+ser
+sysuser:x:1002:1002::/home/sysuser:/bin/bash
+
+```
+
+- Determine What Groups `sysuser` Belongs To
+`groups=1002(sysuser)`
+
+- Determine `sysusr`’s Home Directory
+`/home/sysuser`
+
+- Determine `sysusr`’s Login Shell
+`/bin/bash`
+
+
+## System Users
+
+System users are generally deployed when applications are installed, their home directories are set to application folders, and they normally do not have a login shell (Standard users have login shell).
+
+```bash 
+
+ailin@Ailin:~$ cat /etc/passwd | grep www-data
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+
+```
+When Apache is installed, it's going to add the user `www-data`. The home directory is going to be somewhere used by
+this application Apache, in terms of binaries, libraries, files. It will issue its own processes. So when we start the web server, it will be running under the user `www-data`, and it will have a login shell that is disabled.
+`www-data`, no password, UID is 33, group ID is 33, the GECOS name or just the normal name. The home directory is `/var/www`. And then we have this `/usr/sbin/nologin`. If we are dealing with `/usr/sbin/nologin` or false, that means you cannot log in to the system through an interactive shell like this. You can merely spawn processes on the system.
+
+## User and Group Commands
+
+## User IDs
+
+## File and Directory Permissions and Ownership 
+
+Each character represent a different permission:
+
+`r`: readable
+
+`w`: writable
+
+`x`: executable (basically an executable program)
+
+`-`: empty
+
+Use [Chmod calculator](https://chmod-calculator.com/) to convert  Linux file permissions between numeric value (e.g. 777) or symbolic notation (e.g. rwxrwxrwx).
 
 
 _[Back to the top](#table-of-contents)_
