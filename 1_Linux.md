@@ -749,7 +749,7 @@ A [subnet](https://linuxjourney.com/lesson/subnets) is a group of hosts with IP 
 
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
+        inet 192.xxx.x.xx  netmask 255.255.xxx.x  broadcast 192.xxx.xx.xxx
         inet6 fe80::202:5dff:fe0f:2fcd  prefixlen 64  scopeid 0x20<link>
         ether 00:15:5d:1f:2f:cd  txqueuelen 1000  (Ethernet)
         RX packets 261  bytes 59825 (59.8 KB)
@@ -757,8 +757,8 @@ eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX packets 14  bytes 1076 (1.0 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65530
+        inet 127.xxx.x.x  netmask 255.xxx.xxx.xxx
         inet6 ::1  prefixlen 128  scopeid 0x10<host>
         loop  txqueuelen 1000  (Local Loopback)
         RX packets 0  bytes 0 (0.0 B)
@@ -820,7 +820,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 ailin@Ailin:~$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.1.79  netmask 255.255.240.0  broadcast 192.168.95.255
+        inet 192.xxx.x.xx  netmask 255.255.xxx.x  broadcast 192.xxx.xx.xxx
         inet6 fe80::202:5dff:fe0f:2fcd  prefixlen 64  scopeid 0x20<link>
         ether 00:15:5d:1f:2f:cd  txqueuelen 1000  (Ethernet)
         RX packets 2256  bytes 457832 (457.8 KB)
@@ -828,8 +828,8 @@ eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX packets 60  bytes 5428 (5.4 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65530
+        inet 127.xxx.x.x  netmask 255.xxx.xxx.xxx
         inet6 ::1  prefixlen 128  scopeid 0x10<host>
         loop  txqueuelen 1000  (Local Loopback)
         RX packets 4  bytes 156 (156.0 B)
@@ -837,14 +837,11 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX packets 4  bytes 156 (156.0 B)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-_[Back to the top](#table-of-contents)_
-
-  
 ```
 
 A network interface is how the kernel links up the software side of networking to the hardware side. `ifconfig` command allows us to configure our network interfaces. It shows the interface name `eth0` (first Ethernet card in the machine) and `lo` (loopback interface) which is the internal network that Linux uses to communicate to itself. 
 
 
-  
-  
+
+_[Back to the top](#table-of-contents)_
 
