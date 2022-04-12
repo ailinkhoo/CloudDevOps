@@ -28,7 +28,8 @@
   - [User and Group Commands](#user-and-group-commands)
   - [User IDs](#user-ids)
   - [File and Directory Permissions and Ownership](#file-and-directory-permissions-and-ownership)
-
+  - [Special Directories and Files](#special-directories-and-files)
+  - [Symbolic Links](#symbolic-links)
 
 
 # Linux Essentials
@@ -677,31 +678,36 @@ Processes are the programs that are running on your machine. They are managed by
 
 ![image](https://user-images.githubusercontent.com/97931452/162226381-ff0205e7-bba9-4589-891b-362effadd225.png)
 
-`ps` command to see a list of running processes.
+`ps` command to see a list of running processes. This shows you a quick snapshot of the current processes.
 
-This shows you a quick snapshot of the current processes:
-
-**PID**: Process ID
-
-**TTY**: Controlling terminal associated with the process
-
-**TIME**: Total CPU usage time
-
-**CMD**: Name of executable/command
+| Column  | Description | 
+| --- | --- | 
+| PID | Process ID |
+| TTY | Controlling terminal associated with the process |
+| TIME | Total CPU usage time |
+| CMD | Name of executable/command |
 
 `ps aux` 
 
-**USER**: The effective user (the one whose access we are using)
-**PID**: Process ID
-**%CPU**: CPU time used divided by the time the process has been running
-**%MEM**: Ratio of the process's resident set size to the physical memory on the machine
-**VSZ**: Virtual memory usage of the entire process
-**RSS**: Resident set size, the non-swapped physical memory that a task has used
-**TTY**: Controlling terminal associated with the process
-**STAT**: Process status code
-**START**: Start time of the process
-**TIME**: Total CPU usage time
-**COMMAND**: Name of executable/command
+`a`:- This option prints the running processes from all users.
+
+`u`:- This option shows user or owner column in output.
+
+`x`:- This option prints the processes those have not been executed from the terminal.
+
+| Column  | Description | 
+| --- | --- | 
+| USER | The effective user (the one whose access we are using) |
+| PID | Process ID |
+| %CPU | CPU time used divided by the time the process has been running |
+| %MEM | Ratio of the process's resident set size to the physical memory on the machine |
+| VSZ | Virtual memory usage of the entire process |
+| RSS | Resident set size, the non-swapped physical memory that a task has used |
+| TTY | Controlling terminal associated with the process |
+| STAT | Process status code |
+| START | Start time of the process |
+| TIME | Total CPU usage time |
+| COMMAND | Name of executable/command |
 
 `top` command gives you real time information about the processes running on your system instead of a snapshot. By default you'll get a refresh every 10 seconds. It is a useful tool to see what processes are taking up a lot of your resources.
 
@@ -743,7 +749,7 @@ A *network* is a group of connected devices that are able to communicate with ea
 
 **Host**: Each machine on a network is known as a host.
 
-```
+
 `ip addr show` To display a list of all network interfaces and the associated ip address
 
 If you want to display only [IPv4](https://linuxjourney.com/lesson/ipv4) or IPv6 ip addresses, use `ip -4 addr` or `ip -6 addr`
@@ -853,6 +859,7 @@ A network interface is how the kernel links up the software side of networking t
 **Standard user** accounts are provided a login shell, a home directory, limited permissions for viewing system configurations, and no permission for modifying system configurations. 
 
 `sudo` super-user do
+
 The use of `sudo` provides a mechanism whereby a user account is permitted the ability to run a command with elevated permissions.
 
 **Root User** account has full access to all permissions on the system, and is used for system-level administration tasks. 
@@ -887,9 +894,10 @@ The use of `sudo` provides a mechanism whereby a user account is permitted the a
 | Expire | Absolute expiration date | 
 
 
-
 `/etc/group`
+
 `ailin:x:1000:` `ailin` is the primary member of the group, therefore it is not shown under group member.
+
 `docker:x:1001:ailin` 
 
 | Attribute | Meaning | 
@@ -900,17 +908,14 @@ The use of `sudo` provides a mechanism whereby a user account is permitted the a
 | Group List | a comma deliniated list of usernames that belong to the group | 
 
 
-```bash
-
-ailin@Ailin:~$ groups ailin
-ailin : ailin adm dialout cdrom floppy sudo audio dip video plugdev netdev docker 
-
-```
-
 `groups` command will list the groups the user are member of. First group is the primary group. 
 
-```bash 
+```bash
+ailin@Ailin:~$ groups ailin
+ailin : ailin adm dialout cdrom floppy sudo audio dip video plugdev netdev docker 
+```
 
+```bash 
 [cloud_user@ip-10-0-1-10 ~]$ pwd
 /home/cloud_user
 [cloud_user@ip-10-0-1-10 ~]$ id sysuser
@@ -921,28 +926,21 @@ sysuser:x:1002:1002::/home/sysuser:/bin/bash
 [cloud_user@ip-10-0-1-10 ~]$ cat /etc/passwd | grep sysu
 ser
 sysuser:x:1002:1002::/home/sysuser:/bin/bash
-
 ```
 
-- Determine What Groups `sysuser` Belongs To
-`groups=1002(sysuser)`
+- Determine What Groups `sysuser` Belongs To: `groups=1002(sysuser)`
 
-- Determine `sysusr`’s Home Directory
-`/home/sysuser`
+- Determine `sysusr`’s Home Directory: `/home/sysuser`
 
-- Determine `sysusr`’s Login Shell
-`/bin/bash`
-
+- Determine `sysusr`’s Login Shell: `/bin/bash`
 
 ## System Users
 
 System users are generally deployed when applications are installed, their home directories are set to application folders, and they normally do not have a login shell (Standard users have login shell).
 
 ```bash 
-
 ailin@Ailin:~$ cat /etc/passwd | grep www-data
 www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-
 ```
 When Apache is installed, it's going to add the user `www-data`. The home directory is going to be somewhere used by
 this application Apache, in terms of binaries, libraries, files. It will issue its own processes. So when we start the web server, it will be running under the user `www-data`, and it will have a login shell that is disabled.
@@ -950,9 +948,48 @@ this application Apache, in terms of binaries, libraries, files. It will issue i
 
 ## User and Group Commands
 
+`useradd [USERNAME]` create users. Options are available for specifying the UID, GID, home directory, and group membership. 
+
+`userdel [USERNAME]` remove user.
+
+`passwd [USERNAME]` change password. 
+
+`groupadd [GROUPNAME]` create groups.
+
+`/etc/skel` the contents of `/etc/skel` are automatically copied when a new user's home directory is created via the `useradd` utility.
+
 ## User IDs
 
+Local users are given a unique ID number that is stored with username in `/etc/passwd`. 
+
+- `UID 0` - root account 
+- `UID 1-99` - reserved for system users
+- `UID 100+` or higher - standard users 
+- `UID 65534` - reserved for user nobody
+
 ## File and Directory Permissions and Ownership 
+
+Numeric Permissions
+
+| Numeric Permissions | Meaning | 
+| --- | --- |  
+| 7 | Read, write, execute |
+| 6 | Read, write |
+| 5 | Read, execute |
+| 4 | Read |
+| 3 | Execute, write |
+| 2 | Write |
+| 1 | Execute |
+| 0 | No permissions |
+
+Use [Chmod calculator](https://chmod-calculator.com/) to convert  Linux file permissions between numeric value (e.g. 777) or symbolic notation (e.g. rwxrwxrwx).
+
+```bash
+drwxr-xr-x 1 Khoo Ai Lin 197121   0 Apr  5 14:43 bin/
+-rw-r--r-- 1 Khoo Ai Lin 197121   0 Apr  4 09:49 file_2
+```
+
+There are four parts to a file's permissions. The first part is the filetype, which is denoted by the first character in the permissions, d for directory and f for file. So in the above example, we see that the user has read, write and execute permissions on the file. The group has read and execute permissions. And finally, the other users (everyone else) has read and execute permissions.
 
 Each character represent a different permission:
 
@@ -964,8 +1001,207 @@ Each character represent a different permission:
 
 `-`: empty
 
-Use [Chmod calculator](https://chmod-calculator.com/) to convert  Linux file permissions between numeric value (e.g. 777) or symbolic notation (e.g. rwxrwxrwx).
+`chown [OPTIONS] USER[:GROUP] FILE`: changes ownership of the file
 
+| Command | Meaning | 
+| --- | --- |  
+| `chown cloud_user file1` | Change a file's user ownership |
+| `chown :cloud_user file1` | Change a file's group ownership | 
+| `chown cloud_user:cloud_user file1` | Change a file's user and group ownership |
+
+
+`chmod [OPTIONS] PERMISSIONS file`: changes the permissions of the file
+
+| Command | Meaning | 
+| --- | --- |  
+| `chmod 777 file1` | Read, write and execute for all |
+| `chmod 744 file1` | Read, write and execute for owner; read for group and everyone | 
+| `chmod +x file1` | Add execute to current permissions |
+| `chmod -w file1` | Remove write from current permissions |
+
+Every file that gets created comes with a default set of permissions. The default `umask` on most distributions is `022`, meaning all user access, but no write access for group and other users.
+
+`$ umask 021` means that we want the default permissions of new files to allow users access to everything, but for groups we want to take away their write permission and for others we want to take away their executable permission.
+
+### Lab 
+
+**Lock Bill's, Susan's, and Juan’s Accounts**
+Lock the accounts of employees who left.
+
+```bash 
+[cloud_user@ip-10-0-1-59 ~]$ pwd
+/home/cloud_user
+[cloud_user@ip-10-0-1-59 ~]$ ll /home/
+total 0
+drwx------. 2 bill       bill       263 Apr 11 21:37 bill
+drwx------. 3 centos     centos      95 Feb  4  2017 centos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
+drwx------. 2 jason      jason      273 Apr 11 21:36 jas
+on
+drwx------. 2 juan       juan       263 Apr 11 21:37 jua
+n
+drwx------. 2 sally      sally       62 Apr 11 21:35 sal
+ly
+drwx------. 2 susan      susan      273 Apr 11 21:37 sus
+an
+[cloud_user@ip-10-0-1-59 ~]$ for i in bill susan juan; do sudo passwd -l $i; done
+[sudo] password for cloud_user:
+Locking password for user bill.
+passwd: Success
+Locking password for user susan.
+passwd: Success
+Locking password for user juan.
+passwd: Success
+```
+**Create Accounts for Nancy, Greg, and Jeremy**
+
+```bash
+[cloud_user@ip-10-0-1-59 ~]$ for i in nancy greg jeremy; do sudo useradd -m $i; done
+[cloud_user@ip-10-0-1-59 ~]$ ll 
+/home/total 0
+drwx------. 2 bill       bill       263 Apr 11 21:37 bill
+drwx------. 3 centos     centos      95 Feb  4  2017 cen
+tos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
+ud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 gre
+g
+drwx------. 2 jason      jason      273 Apr 11 21:36 jas
+on
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jer
+emy
+drwx------. 2 juan       juan       263 Apr 11 21:37 jua
+n
+drwx------. 2 nancy      nancy       62 Apr 11 22:14 nan
+cy
+drwx------. 2 sally      sally       62 Apr 11 21:35 sal
+ly
+drwx------. 2 susan      susan      273 Apr 11 21:37 susan
+```
+
+**Remove Bill as a User and Transfer Ownership of his Home Directory**
+
+```bash
+[cloud_user@ip-10-0-1-59 ~]$ id jasonuid=1002(jason) gid=1002(jason) groups=1002(jason)[cloud_user@ip-10-0-1-59 ~]$ sudo userdel bill
+[cloud_user@ip-10-0-1-59 ~]$ ll /home/
+total 0
+drwx------. 2       1004       1004 263 Apr 11 21:37 bil
+l
+drwx------. 3 centos     centos      95 Feb  4  2017 cen
+tos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
+ud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 gre
+g
+drwx------. 2 jason      jason      273 Apr 11 21:36 jas
+on
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jer
+emy
+drwx------. 2 juan       juan       263 Apr 11 21:37 jua
+n
+drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
+drwx------. 2 sally      sally       62 Apr 11 21:35 sally
+drwx------. 2 susan      susan      273 Apr 11 21:37 susan
+[cloud_user@ip-10-0-1-59 ~]$ sudo chown -R nancy:jason /home/bill
+[cloud_user@ip-10-0-1-59 ~]$ sudo chmod g+rx /home/bill
+[cloud_user@ip-10-0-1-59 ~]$ ll /home/
+total 0
+drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bill
+drwx------. 3 centos     centos      95 Feb  4  2017 centos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 greg
+drwx------. 2 jason      jason      273 Apr 11 21:36 jason
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jeremy
+drwx------. 2 juan       juan       263 Apr 11 21:37 juan
+drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
+drwx------. 2 sally      sally       62 Apr 11 21:35 sally
+drwx------. 2 susan      susan      273 Apr 11 21:37 susan
+[cloud_user@ip-10-0-1-59 ~]$ sudo ls -l /home/bill
+total 120
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_1
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_10
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_2
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_3
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_4
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_5
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_6
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_7
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_8
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_9
+```
+
+**Remove Susan as a User and Transfer Ownership of her Home Directory**
+
+```bash
+[cloud_user@ip-10-0-1-59 ~]$ sudo userdel susan
+[cloud_user@ip-10-0-1-59 ~]$ sudo chown -R greg:jason /home/susan
+[cloud_user@ip-10-0-1-59 ~]$ sudo chmod g+rx /home/susan[cloud_user@ip-10-0-1-59 ~]$ ll /home
+total 0
+drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bil
+ldrwx------. 3 centos     centos      95 Feb  4  2017 cen
+tosdrwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
+ud_userdrwx------. 2 greg       greg        62 Apr 11 22:14 gre
+gdrwx------. 2 jason      jason      273 Apr 11 21:36 jas
+ondrwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jer
+emydrwx------. 2 juan       juan       263 Apr 11 21:37 jua
+ndrwx------. 2 nancy      nancy       62 Apr 11 22:14 nan
+cy
+drwx------. 2 sally      sally       62 Apr 11 21:35 sally
+drwxr-x---. 2 greg       jason      273 Apr 11 21:37 susan
+```
+
+**Remove Juan as a User and Transfer Ownership of His Home Directory**
+
+```bash
+[cloud_user@ip-10-0-1-59 ~]$ id sally
+uid=1003(sally) gid=1003(sally) groups=1003(sally)[cloud_user@ip-10-0-1-59 ~]$ sudo userdel juan
+[cloud_user@ip-10-0-1-59 ~]$ sudo chown -R jeremy:sally/home/juan
+[cloud_user@ip-10-0-1-59 ~]$ sudo chmod g+rx /home/juan[cloud_user@ip-10-0-1-59 ~]$ ll /home/
+total 0
+drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bil
+ldrwx------. 3 centos     centos      95 Feb  4  2017 cen
+tosdrwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
+ud_userdrwx------. 2 greg       greg        62 Apr 11 22:14 gre
+gdrwx------. 2 jason      jason      273 Apr 11 21:36 jas
+on
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jeremy
+drwxr-x---. 2 jeremy     sally      263 Apr 11 21:37 juan
+drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
+drwx------. 2 sally      sally       62 Apr 11 21:35 sally
+drwxr-x---. 2 greg       jason      273 Apr 11 21:37 susan
+[cloud_user@ip-10-0-1-59 ~]$ sudo su - nancy
+[nancy@ip-10-0-1-59 ~]$ pwd
+/home/nancy
+[nancy@ip-10-0-1-59 ~]$ cd /home/bill
+[nancy@ip-10-0-1-59 bill]$ ll
+total 120
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_1
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_10
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_2
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_3
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_4
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_5
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_6
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_7
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_8
+-rw-rw-r--. 1 nancy jason 10240 Apr 11 21:37 bill_files_9
+[nancy@ip-10-0-1-59 bill]$ echo "a new line" >> bill_files_1
+[nancy@ip-10-0-1-59 bill]$ tail -n1 bill_files_1
+a new line
+```
+## Special Directories and Files 
+
+`/tmp` Cleared upon system boot. It is used by programs or scripts that require temporary files or directories. 
+
+`/var/tmp` Cleared every 30 days (depending on distro). It is used by programs or scripts that require temporary files or directories with more persistence (through a system rebbot). 
+
+`mktemp [OPTION] [NAME TEMPLATE]` create a tempoary file or directory
+
+### Symbolic Links
+
+In Linux, the equivalent of shortcuts in Windows are symbolic links (or soft links or symlinks). Symlinks allow us to link to another file by its filename.
+
+` ln -s [TARGET] [LINK NAME]` create a symbolic link to the target as a file specified by [LINK NAME].
 
 _[Back to the top](#table-of-contents)_
 
