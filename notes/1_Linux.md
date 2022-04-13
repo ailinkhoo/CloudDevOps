@@ -972,7 +972,7 @@ Local users are given a unique ID number that is stored with username in `/etc/p
 Numeric Permissions
 
 | Numeric Permissions | Meaning | 
-| --- | --- |  
+| - | ------------- |  
 | 7 | Read, write, execute |
 | 6 | Read, write |
 | 5 | Read, execute |
@@ -1004,7 +1004,7 @@ Each character represent a different permission:
 `chown [OPTIONS] USER[:GROUP] FILE`: changes ownership of the file
 
 | Command | Meaning | 
-| --- | --- |  
+| --- | ----- |  
 | `chown cloud_user file1` | Change a file's user ownership |
 | `chown :cloud_user file1` | Change a file's group ownership | 
 | `chown cloud_user:cloud_user file1` | Change a file's user and group ownership |
@@ -1013,7 +1013,7 @@ Each character represent a different permission:
 `chmod [OPTIONS] PERMISSIONS file`: changes the permissions of the file
 
 | Command | Meaning | 
-| --- | --- |  
+| --- | -------- |  
 | `chmod 777 file1` | Read, write and execute for all |
 | `chmod 744 file1` | Read, write and execute for owner; read for group and everyone | 
 | `chmod +x file1` | Add execute to current permissions |
@@ -1057,8 +1057,8 @@ passwd: Success
 
 ```bash
 [cloud_user@ip-10-0-1-59 ~]$ for i in nancy greg jeremy; do sudo useradd -m $i; done
-[cloud_user@ip-10-0-1-59 ~]$ ll 
-/home/total 0
+[cloud_user@ip-10-0-1-59 ~]$ ll /home/
+total 0
 drwx------. 2 bill       bill       263 Apr 11 21:37 bill
 drwx------. 3 centos     centos      95 Feb  4  2017 cen
 tos

@@ -24,9 +24,11 @@ Below you will find links to the notes for each lesson.
 
 - [Github](https://github.com/) follow top contributors to project/repo, use explore to look for relevant repo, use marketplace to look for new tools/apps.  
 - [Stackoverflow](https://stackoverflow.com/) look for answers, solve problems posted on it. 
-- [Meet Up](https://www.meetup.com/topics/software-engineering)
+- [Meet Up](https://www.meetup.com/topics/software-engineering) physical meetup
 - [Linkedin](https://www.linkedin.com) for jobs, visibility to recruiters.
 - [Twitter](https://twitter.com/) look out for latest updates
+- Setup for interview and meeting: Maono AU-PM360TR, Blue Snowball Ice, Tin Hifi T2 Plus, Ugreen audio interface
+
 
 ## Self learning 
 
