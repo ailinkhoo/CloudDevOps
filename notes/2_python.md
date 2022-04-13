@@ -23,18 +23,35 @@ ailin@Ailin:/mnt/c/Users/Khoo Ai Lin/Desktop/Cloud suport and devops/practice/py
 Python 3.8.2 (default, Mar 13 2020, 10:14:16)
 [GCC 9.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>> 1+ 1
+>>> 1 + 1
 2
 >>> None
 >>> exit()
 ```
 
-- access REPL by running `python3` from terminal 
+- Access REPL by running `python3` from terminal 
 - The `>>>` indicates that you can type on that line. 
-- to exit the REPL, `type exit()` or `CTRL+d`
+- To exit the REPL, `type exit()` or `CTRL+d`
 
 ### Creating and running Python scripts
 
+1. Create a python script `vim hello.py`
+2. Enter the line in vim `print("Hello World")`
+3. Pass the file to python CLI to run it `python3 hello.py`
+4. Check where is the executable file `which python3`
+4. Add shebang at the top line of script `#!/usr/bin/python3`
+5. Make the python file executable `chmod u+x hello.py`
+6. Run the script ` ./hello.py` The command takes into consideration that you are in the same directory as the file is in.
+7. Change name of file `mv hello.py hello`
+7. Run the script without specifying the absolute path by adding directory to $PATH  
+
+```bash
+$ mkdir ~/bin
+$ mv hello ~/bin/
+$ export PATH=$HOME/bin:$PATH
+$ hello
+Hello, World!
+```
 
 ### Comments
 

@@ -1036,14 +1036,10 @@ total 0
 drwx------. 2 bill       bill       263 Apr 11 21:37 bill
 drwx------. 3 centos     centos      95 Feb  4  2017 centos
 drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
-drwx------. 2 jason      jason      273 Apr 11 21:36 jas
-on
-drwx------. 2 juan       juan       263 Apr 11 21:37 jua
-n
-drwx------. 2 sally      sally       62 Apr 11 21:35 sal
-ly
-drwx------. 2 susan      susan      273 Apr 11 21:37 sus
-an
+drwx------. 2 jason      jason      273 Apr 11 21:36 jason
+drwx------. 2 juan       juan       263 Apr 11 21:37 juan
+drwx------. 2 sally      sally       62 Apr 11 21:35 sally
+drwx------. 2 susan      susan      273 Apr 11 21:37 susan
 [cloud_user@ip-10-0-1-59 ~]$ for i in bill susan juan; do sudo passwd -l $i; done
 [sudo] password for cloud_user:
 Locking password for user bill.
@@ -1060,22 +1056,14 @@ passwd: Success
 [cloud_user@ip-10-0-1-59 ~]$ ll /home/
 total 0
 drwx------. 2 bill       bill       263 Apr 11 21:37 bill
-drwx------. 3 centos     centos      95 Feb  4  2017 cen
-tos
-drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
-ud_user
-drwx------. 2 greg       greg        62 Apr 11 22:14 gre
-g
-drwx------. 2 jason      jason      273 Apr 11 21:36 jas
-on
-drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jer
-emy
-drwx------. 2 juan       juan       263 Apr 11 21:37 jua
-n
-drwx------. 2 nancy      nancy       62 Apr 11 22:14 nan
-cy
-drwx------. 2 sally      sally       62 Apr 11 21:35 sal
-ly
+drwx------. 3 centos     centos      95 Feb  4  2017 centos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 greg
+drwx------. 2 jason      jason      273 Apr 11 21:36 jason
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jeremy
+drwx------. 2 juan       juan       263 Apr 11 21:37 juan
+drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
+drwx------. 2 sally      sally       62 Apr 11 21:35 sally
 drwx------. 2 susan      susan      273 Apr 11 21:37 susan
 ```
 
@@ -1085,20 +1073,13 @@ drwx------. 2 susan      susan      273 Apr 11 21:37 susan
 [cloud_user@ip-10-0-1-59 ~]$ id jasonuid=1002(jason) gid=1002(jason) groups=1002(jason)[cloud_user@ip-10-0-1-59 ~]$ sudo userdel bill
 [cloud_user@ip-10-0-1-59 ~]$ ll /home/
 total 0
-drwx------. 2       1004       1004 263 Apr 11 21:37 bil
-l
-drwx------. 3 centos     centos      95 Feb  4  2017 cen
-tos
-drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
-ud_user
-drwx------. 2 greg       greg        62 Apr 11 22:14 gre
-g
-drwx------. 2 jason      jason      273 Apr 11 21:36 jas
-on
-drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jer
-emy
-drwx------. 2 juan       juan       263 Apr 11 21:37 jua
-n
+drwx------. 2       1004       1004 263 Apr 11 21:37 bill
+drwx------. 3 centos     centos      95 Feb  4  2017 centos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 greg
+drwx------. 2 jason      jason      273 Apr 11 21:36 jason
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jeremy
+drwx------. 2 juan       juan       263 Apr 11 21:37 juan
 drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
 drwx------. 2 sally      sally       62 Apr 11 21:35 sally
 drwx------. 2 susan      susan      273 Apr 11 21:37 susan
@@ -1137,15 +1118,14 @@ total 120
 [cloud_user@ip-10-0-1-59 ~]$ sudo chown -R greg:jason /home/susan
 [cloud_user@ip-10-0-1-59 ~]$ sudo chmod g+rx /home/susan[cloud_user@ip-10-0-1-59 ~]$ ll /home
 total 0
-drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bil
-ldrwx------. 3 centos     centos      95 Feb  4  2017 cen
-tosdrwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
-ud_userdrwx------. 2 greg       greg        62 Apr 11 22:14 gre
-gdrwx------. 2 jason      jason      273 Apr 11 21:36 jas
-ondrwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jer
-emydrwx------. 2 juan       juan       263 Apr 11 21:37 jua
-ndrwx------. 2 nancy      nancy       62 Apr 11 22:14 nan
-cy
+drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bill 
+drwx------. 3 centos     centos      95 Feb  4  2017 centos 
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 greg
+drwx------. 2 jason      jason      273 Apr 11 21:36 jason
+drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jeremy
+drwx------. 2 juan       juan       263 Apr 11 21:37 juan
+drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
 drwx------. 2 sally      sally       62 Apr 11 21:35 sally
 drwxr-x---. 2 greg       jason      273 Apr 11 21:37 susan
 ```
@@ -1158,12 +1138,11 @@ uid=1003(sally) gid=1003(sally) groups=1003(sally)[cloud_user@ip-10-0-1-59 ~]$ s
 [cloud_user@ip-10-0-1-59 ~]$ sudo chown -R jeremy:sally/home/juan
 [cloud_user@ip-10-0-1-59 ~]$ sudo chmod g+rx /home/juan[cloud_user@ip-10-0-1-59 ~]$ ll /home/
 total 0
-drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bil
-ldrwx------. 3 centos     centos      95 Feb  4  2017 cen
-tosdrwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 clo
-ud_userdrwx------. 2 greg       greg        62 Apr 11 22:14 gre
-gdrwx------. 2 jason      jason      273 Apr 11 21:36 jas
-on
+drwxr-x---. 2 nancy      jason      263 Apr 11 21:37 bill 
+drwx------. 3 centos     centos      95 Feb  4  2017 centos
+drwx------. 4 cloud_user cloud_user 127 Apr 11 21:33 cloud_user
+drwx------. 2 greg       greg        62 Apr 11 22:14 greg
+drwx------. 2 jason      jason      273 Apr 11 21:36 jason
 drwx------. 2 jeremy     jeremy      62 Apr 11 22:14 jeremy
 drwxr-x---. 2 jeremy     sally      263 Apr 11 21:37 juan
 drwx------. 2 nancy      nancy       62 Apr 11 22:14 nancy
@@ -1201,7 +1180,7 @@ a new line
 
 In Linux, the equivalent of shortcuts in Windows are symbolic links (or soft links or symlinks). Symlinks allow us to link to another file by its filename.
 
-` ln -s [TARGET] [LINK NAME]` create a symbolic link to the target as a file specified by [LINK NAME].
+`ln -s [TARGET] [LINK NAME]` create a symbolic link to the target as a file specified by [LINK NAME].
 
 _[Back to the top](#table-of-contents)_
 
