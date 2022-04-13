@@ -1,6 +1,8 @@
 
 :blue_book: This repo contains notes and tips for Cloud Support and DevOps. 
 
+- [Notes](https://github.com/ailinkhoo/notes/tree/main/notes) for the course.
+
 ## Essentials for beginners 
 
 - [Github](https://github.com/) follow top contributors to project/repo, use explore to look for relevant repo, use marketplace to look for new tools/apps.  

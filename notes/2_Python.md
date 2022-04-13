@@ -2,12 +2,16 @@
 
 ### Table of contents
 - [Getting Started with Python](#getting-started-with-python)
+  - [Running Python](#running-python)
+  - [Common Data Types](#common-data-types)
 - [Basic and Intermediate Scripting](#basic-and-intermediate-scripting)
 - [Libraries: PIP, Virtual/Env](#libraries:-pip,-Virtual/Env))
 - [Building a Web Application with Python and Flask](#building-a-web-application-with-python-and-flask)
 
 # Getting Started with Python
-## REPL 
+
+## Running Python
+### REPL 
 Python is an interpreted language, and the code is evaluated line-by-line. Since each line can be evaluated by itself, the time between evaluating each line doesn’t matter, and this allows us to have a **REPL**.
 
 **REPL** stands for: Read, Evaluate, Print, Loop 
@@ -29,8 +33,27 @@ Type "help", "copyright", "credits" or "license" for more information.
 - The `>>>` indicates that you can type on that line. 
 - to exit the REPL, `type exit()` or `CTRL+d`
 
+### Creating and running Python scripts
 
-## Creating and running Python scripts
+
+### Comments
+
+## Common Data Types
+
+### Strings
+
+### Numbers (int and float)
+
+### Booleans and None
+
+### Working with Variables
+
+### Lists
+
+### Tuples
+
+### Dictionaries
+
 
 # Basic and Intermediate Scripting
 
