@@ -576,9 +576,11 @@ Notice how when you type any of these insertion modes, you'll see that vim has e
 
 `:w` Write file 
   
-`:q` Quit vim
+`:q` Quit vim, if no changes
 
 `:wq` Write and quit
+
+`:q!` Quit without saving
 
 `u` undo your last action
    

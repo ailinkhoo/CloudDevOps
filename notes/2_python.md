@@ -4,8 +4,9 @@
 - [Getting Started with Python](#getting-started-with-python)
   - [Running Python](#running-python)
   - [Common Data Types](#common-data-types)
+  - [Control Flow](#control-flow)
 - [Basic and Intermediate Scripting](#basic-and-intermediate-scripting)
-- [Libraries: PIP, Virtual/Env](#libraries:-pip,-Virtual/Env))
+- [Libraries: PIP, Virtual/Env](#libraries:-pip,-Virtual/Env)
 - [Building a Web Application with Python and Flask](#building-a-web-application-with-python-and-flask)
 
 # Getting Started with Python
@@ -43,7 +44,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 5. Make the python file executable `chmod u+x hello.py`
 6. Run the script ` ./hello.py` The command takes into consideration that you are in the same directory as the file is in.
 7. Change name of file `mv hello.py hello`
-7. Run the script without specifying the absolute path by adding directory to $PATH  
+7. Run the script without specifying the absolute path by adding directory to `$PATH`  
 
 ```bash
 $ mkdir ~/bin
@@ -55,11 +56,47 @@ Hello, World!
 
 ### Comments
 
+```python
+# This is a single line comment 
+"""
+This is not a block comment, it is a string, but it will still work when you really need for some lines of code to not execute.
+"""
+```
+
 ## Common Data Types
 
 ### Strings
 
-### Numbers (int and float)
+Create strings using either single quotes ('), double quotes ("), or triple single or double quotes for a multi-line string.
+
+```python
+>>> 'single quoted string'
+'single quoted string'
+>>> "double quoted string"
+'double quoted string'
+>>> '''
+... this is a triple
+... quoted string
+... '''
+'\nthis is a triple \nquoted string \n'
+>>> print ('''
+... this is a triple
+... quoted string
+... ''')
+this is a triple
+quoted string
+```
+Combine strings using the + operator and multiply a string by a number using the * operator: 
+
+```python
+>>> "pass" + "word"
+'password'
+>>> "Ha" * 4
+'HaHaHaHa'
+```
+
+### Numbers int and float)
+
 
 ### Booleans and None
 
@@ -71,6 +108,15 @@ Hello, World!
 
 ### Dictionaries
 
+## Control Flow
+
+### Conditionals and Comparisons 
+
+### while loop
+
+### for loop
+
+### Logic Operations
 
 # Basic and Intermediate Scripting
 
