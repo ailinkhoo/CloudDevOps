@@ -94,29 +94,423 @@ Combine strings using the + operator and multiply a string by a number using the
 >>> "Ha" * 4
 'HaHaHaHa'
 ```
+Strings are immutable which means you can’t change an existing string.
 
-### Numbers int and float)
+### Numbers (int and float)
 
+```python
+>>> 2 + 2 # Addition
+4
+>>> 10 - 4 # Subtraction
+6
+>>> 3 * 9 # Multiplication
+27
+>>> 5 / 3 # Division with floating point result
+1.6666666666666667
+>>> 5 // 3 # Floor division; quotient
+1
+>>> 8 % 3 # Remainder
+2
+>>> 2 ** 3 # Exponential
+8
+```
+Convert using `int`, `float`, `str` function
 
+```python
+>>> str(1.1) #string
+'1.1'
+>>> int("10") #integer
+10
+>>> int(5.999) #integer
+5
+>>> float("5.6") #float
+5.6
+>>> float(5) #float
+5.0
+```
 ### Booleans and None
+
+Python has two boolean constants:  `True` and `False`. The constant used to represent lack of value is `None`.
 
 ### Working with Variables
 
+We can assign a value to a variable by using a single `=`.
+
+```python
+>>> my_str = "This a string"
+>>> print(my_str)
+This a string
+```
+Check the type of variable by using `type`.
+
+```python
+>>> message = 'And now for something completely different'
+>>> n = 17
+>>> pi = 3.1415
+>>> type(message)
+<class 'str'>
+>>> type(n)
+<class 'int'>
+>>> type(pi)
+<class 'float'>
+```
+
+`76trombones` is illegal because it begins with a number. `more@` is illegal because it contains an illegal character, `@`. But what’s wrong with `class`? It turns out that class is one of Python’s keywords and they cannot be used as variable names.
+Python reserves 35 keywords:
+```python
+and       del       from      None      True
+as        elif      global    nonlocal  try
+assert    else      if        not       while
+break     except    import    or        with
+class     False     in        pass      yield
+continue  finally   is        raise     async
+def       for       lambda    return    await
+```
+
 ### Lists
+
+A list is a sequence of values. In a string, the values are characters; in a list, they can be any type. A list is created in Python by using the square brackets (`[` and `]`). The syntax for accessing the elements of a list is the same as for accessing the characters of a string: the bracket operator. The expression inside the brackets specifies the index.
+
+```python
+>>> my_list = [1, 2, 3, 4, 5]
+>>> my_list[0]
+1
+>>> my_list[1]
+2
+>>> print(mixed_list)
+['dog', 2.0, 5, [10, 20]]
+```
+The above list contains a string, a float, an integer, and another list. A list within another list is *nested*.
+
+Lists are mutable because you can change the order of items in a list or reassign an item in a list. When the bracket operator appears on the left side of an assignment, it identifies the element of the list that will be assigned.
+
+```python
+>>> numbers = [17, 123]
+>>> numbers[1] = 5
+>>> print(numbers)
+[17, 5]
+```
+
 
 ### Tuples
 
+Tuples are a fixed width, immutable sequence type. We create tuples using parenthesis `(` and `)` and at least one comma `,`.
+
+We can use tuples in some operations like concatenation, but we can’t change the original tuple that we created. One interesting characterist of tuples is that we can unpack them into multiple variables at the same time. Since tuples are immutable, we don’t have access to the same methods that we do on a list. We can use tuples in some operations like concatenation, but we can’t change the original tuple that we created. 
+
+```python
+>>> point = (2.0, 3.0)
+>>> point_3d = point + (4.0,)
+>>> point_3d
+(2.0, 3.0, 4.0)
+>>> type(point_3d)
+<class 'tuple'>
+>>> x, y, z = point_3d
+>>> x
+2.0
+>>> y
+3.0
+>>> z
+4.0
+```
+
 ### Dictionaries
+
+Dictionary is a mapping between a set of indices (which are called keys) and a set of values. Each key maps to a value. The association of a key and a value is called a key-value pair or sometimes an item. We create dictionary literals by using curly braces `{` and `}`, separating keys from values using colons `:`, and separating key/value pairs using commas `,`. Here’s an example dictionary: 
+
+```python
+>>> ages = { 'kevin': 59, 'alex': 29, 'bob': 40 }
+>>> ages
+{'kevin': 59, 'alex': 29, 'bob': 40}
+```
+Elements of a dictionary are not indexed with integer indices. Instead, you use the keys to look up the corresponding values:
+```python
+>>> ages['kevin']
+59
+```
+To add items to the dictionary, you can use square brackets:
+
+```python
+>>> ages['kayla'] = 21
+>>> ages
+{'kevin': 59, 'alex': 29, 'bob': 40, 'kayla': 21}
+```
+
+Items can be removed from a dictionary using the `del` statement or by using the `pop` method: 
+
+```python
+>>> del ages['kevin']
+>>> ages
+{'alex': 29, 'bob': 40, 'kayla': 21}
+>>> ages.pop('alex')
+29
+>>> ages
+{'bob': 40, 'kayla': 21}
+```
+
+We use the `values` and `keys` method to return the keys of the dictionary as a list. 
+
+```python
+>>> ages = {'kevin': 59, 'bob': 40}
+>>> ages.keys()
+dict_keys(['kevin', 'bob'])
+>>> ages.values()
+dict_values([59, 40])
+>>> list(ages.values())
+[59, 40]
+```
+
+Alternate way to create dictionary using the `dict` constructor
+
+```python
+>>> weights = dict(kevin=160, bob=240, kayla=135)
+>>> weights
+{'kevin': 160, 'bob': 240, 'kayla': 135}
+```
 
 ## Control Flow
 
 ### Conditionals and Comparisons 
 
+```python
+>>> 1 < 2
+True
+>>> 0 > 2
+False
+>>> 2 == 1
+False
+>>> 2 != 1
+True
+>>> 3.0 >= 3.0
+True
+>>> 3.1 <= 3.0
+False
+>>> 1.1 == "1.1"
+False
+>>> 1.1 == float("1.1")
+True
+>>> "this" == "this"
+True
+>>> "this" == "This"
+False
+>>> "b" > "a"
+True
+>>> "abc" < "b"
+True
+```
+Notice that the string 'b' is considered greater than the strings 'a' and 'abc'. The characters are compared one at a time alphabetically to determine which is greater. This concept is used to sort strings alphabetically.
+
+`in` is a boolean operator that takes two strings and returns `True` if the first appears as a substring in the second:
+
+```python
+>>> 2 in [1, 2, 3]
+True
+>>> 4 in [1, 2, 3]
+False
+>>> 2 not in [1, 2, 3]
+False
+>>> 4 not in [1, 2, 3]
+True
+```
+In order to write useful programs, we almost always need the ability to check conditions and change the behavior of the program accordingly. Conditional statements give us this ability. The simplest form is the `if` statement:
+
+```python
+if x > 0 :
+    print('x is positive')
+```
+
+The boolean expression after the `if` statement is called the condition. We end the `if` statement with a colon character `:` and the line(s) after the `if` statement are indented.
+
+If you enter an `if` statement in the Python interpreter, the prompt will change from three chevrons to three dots to indicate you are in the middle of a block of statements, as shown below:
+
+```python
+>>> x = 3
+>>> if x < 10:
+...     print('Small')
+...
+Small
+>>>
+```
+To add an alternative code path, we’ll use the `else` keyword, followed by a colon `:`, and indenting the code underneath:
+
+```python
+>>> if False:
+...     print("Was True")
+... else:
+...     print("Was False")
+...
+Was False
+```
+In the event that we want to check multiple potential conditions we can use the `elif CONDITION:` statement. 
+
+```python
+>>> name = "Kevin"
+>>> if len(name) >= 6:
+...     print("name is long")
+... elif len(name) ==5:
+...     print("name is 5 characters")
+... elif len(name) >=4:
+...     print("name is 4 or more")
+... else:
+...     print("name is short")
+...
+name is 5 characters
+```
+Notice that we fell into the first `elif` statement’s block and then the second `elif` block was never executed even though it was true. We can only exercise one branch in an `if` statement.
+
 ### while loop
+
+`while` loop repeats itself based on a condition that we pass to it. Here’s the general structure of a `while` loop:
+
+```python
+while CONDITION:
+    pass
+```
+
+```python
+>>> n = 5
+>>> while n > 0:
+...     print(n)
+...     n = n -1
+...
+5
+4
+3
+2
+1
+```
+The flow of execution for a `while` statement:
+
+- Evaluate the condition, yielding `True` or `False`.
+
+- If the condition is false, exit the `while` statement and continue execution at the next statement.
+
+- If the condition is true, execute the body and then go back to step 1.
+
+We call each time we execute the body of the loop an iteration. For the above loop, we would say, “It had five iterations”, which means that the body of the loop was executed five times.
+
+```python
+>>> while True:
+...     line = input('>')
+...     if line[0] == '#':
+...             continue
+...     if line == 'done':
+...             break
+...     print(line)
+...
+>hello there
+hello there
+># don't print this
+>print this
+print this
+>done
+```
+
+All the lines are printed except the one that starts with the hash sign because when the `continue` is executed, it ends the current iteration and jumps back to the `while` statement to start the next iteration, thus skipping the `print` statement. The loop condition is `True`, which is always true, so the loop runs repeatedly until it hits the `break` statement.
 
 ### for loop
 
+Sometimes we want to loop through a set of things such as a list of words, the lines in a file, or a list of numbers. When we have a list of things to loop through, we can construct a definite loop using a `for` statement. We call the `while` statement an indefinite loop because it simply loops until some condition becomes `False`, whereas the `for` loop is looping through a known set of items so it runs through as many iterations as there are items in the set.
+
+```python
+>>> colours = ['blue', 'green', 'red', 'purple']
+>>> for colour in colours:
+...     print(colour)
+...
+blue
+green
+red
+purple
+>>> colour
+'purple'
+```
+
+```python
+>>> colours = ['blue', 'green', 'red', 'purple']
+>>> for colour in colours:
+...     if colour == 'blue':
+...             continue
+...     elif colour == 'red':
+...             break
+...     print(colour)
+...
+green
+```
+1. blue will populate the variable colour, it will hit `continue` and go back to the body of `for` loop.
+2. green will populate the variable colour, it will go the `print(colour)` statement and go back to the body of `for` loop.  
+3. red will populate the variable colour, `break` statement will be executed and it will break out of `for` loop.   
+
+`Dictionary` is an unordered collection of data values, used to store data values like a map, which unlike other Data Types that hold only single value as an element, Dictionary holds key : value pair. `items()` method is used to return the list with all dictionary keys with values.
+
+```python
+>>> ages = {'kevin': 59, 'bob': 40, 'kayla': 21}
+>>> for name, age in ages.items():
+...     print(f"Person Named: {name}")
+...     print(f"Age of: {age}")
+...
+Person Named: kevin
+Age of: 59
+Person Named: bob
+Age of: 40
+Person Named: kayla
+Age of: 21
+>>>
+
+```
+
 ### Logic Operations
+
+A boolean expression is an expression that is either true or false. The following examples use the operator `==`, which compares two operands and produces `True` if they are equal and `False` otherwise:
+```python
+>>> 5 == 5
+True
+>>> 5 == 6
+False
+>>>
+```
+Other comparison operators:
+
+```python
+x != y               # x is not equal to y
+x > y                # x is greater than y
+x < y                # x is less than y
+x >= y               # x is greater than or equal to y
+x <= y               # x is less than or equal to y
+x is y               # x is the same as y
+x is not y           # x is not the same as y
+```
+True and False are special values that belong to the class bool; they are not strings:
+
+```python
+>>> type(True)
+<class 'bool'>
+>>> type(False)
+<class 'bool'>
+```
+
+There are three logical operators: `and`, `or`, and `not`. The semantics (meaning) of these operators is similar to their meaning in English. 
+
+For example, `x > 0 and x < 10` is true only if x is greater than 0 and less than 10.
+
+`n%2 == 0 or n%3 == 0` is true if either of the conditions is true, that is, if the number is divisible by 2 or 3.
+
+Finally, the `not` operator negates a boolean expression, so `not (x > y)` is true if x > y is false; that is, if x is less than or equal to y.
+
+Strictly speaking, the operands of the logical operators should be boolean expressions, but Python is not very strict. Any nonzero number is interpreted as “true.”
+
+```python
+>>> 17 and True
+True
+```
+```python
+>>> name = ""
+>>> not name
+True
+>>> if not name:
+...     print("no name given")
+...
+no name given
+```
 
 # Basic and Intermediate Scripting
 

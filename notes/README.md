@@ -17,3 +17,5 @@ Below you will find links to the notes for each lesson.
 - [Microsoft Learn Introduction to Bash](https://docs.microsoft.com/en-us/learn/modules/bash-introduction/)
 
 - [Manual page](https://man7.org/index.html)
+
+- [Python for Everybody](https://www.py4e.com/lessons)
