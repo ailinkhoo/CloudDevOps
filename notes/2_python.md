@@ -6,7 +6,7 @@
   - [Common Data Types](#common-data-types)
   - [Control Flow](#control-flow)
 - [Basic and Intermediate Scripting](#basic-and-intermediate-scripting)
-- [Libraries: PIP, Virtual/Env](#libraries:-pip,-Virtual/Env)
+- [Libraries: PIP, Virtual/Env](#libraries-pip-virtualenv)
 - [Building a Web Application with Python and Flask](#building-a-web-application-with-python-and-flask)
 
 # Getting Started with Python
@@ -42,7 +42,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 4. Check where is the executable file `which python3`
 4. Add shebang at the top line of script `#!/usr/bin/python3`
 5. Make the python file executable `chmod u+x hello.py`
-6. Run the script ` ./hello.py` The command takes into consideration that you are in the same directory as the file is in.
+6. Run the script ` ./hello.py` The command takes into consideration that you are in the same directory as the file is in. There is no need to append python3 in front to run the file. 
 7. Change name of file `mv hello.py hello`
 7. Run the script without specifying the absolute path by adding directory to `$PATH`  
 
@@ -136,14 +136,14 @@ Python has two boolean constants:  `True` and `False`. The constant used to repr
 
 We can assign a value to a variable by using a single `=`.
 
-```python
+```
 >>> my_str = "This a string"
 >>> print(my_str)
 This a string
 ```
 Check the type of variable by using `type`.
 
-```python
+```
 >>> message = 'And now for something completely different'
 >>> n = 17
 >>> pi = 3.1415
@@ -157,7 +157,7 @@ Check the type of variable by using `type`.
 
 `76trombones` is illegal because it begins with a number. `more@` is illegal because it contains an illegal character, `@`. But what’s wrong with `class`? It turns out that class is one of Python’s keywords and they cannot be used as variable names.
 Python reserves 35 keywords:
-```python
+```
 and       del       from      None      True
 as        elif      global    nonlocal  try
 assert    else      if        not       while
@@ -272,7 +272,7 @@ Alternate way to create dictionary using the `dict` constructor
 
 ### Conditionals and Comparisons 
 
-```python
+```
 >>> 1 < 2
 True
 >>> 0 > 2
@@ -302,7 +302,7 @@ Notice that the string 'b' is considered greater than the strings 'a' and 'abc'.
 
 `in` is a boolean operator that takes two strings and returns `True` if the first appears as a substring in the second:
 
-```python
+```
 >>> 2 in [1, 2, 3]
 True
 >>> 4 in [1, 2, 3]
@@ -367,7 +367,7 @@ while CONDITION:
     pass
 ```
 
-```python
+```
 >>> n = 5
 >>> while n > 0:
 ...     print(n)
@@ -389,7 +389,7 @@ The flow of execution for a `while` statement:
 
 We call each time we execute the body of the loop an iteration. For the above loop, we would say, “It had five iterations”, which means that the body of the loop was executed five times.
 
-```python
+```
 >>> while True:
 ...     line = input('>')
 ...     if line[0] == '#':
@@ -412,7 +412,7 @@ All the lines are printed except the one that starts with the hash sign because 
 
 Sometimes we want to loop through a set of things such as a list of words, the lines in a file, or a list of numbers. When we have a list of things to loop through, we can construct a definite loop using a `for` statement. We call the `while` statement an indefinite loop because it simply loops until some condition becomes `False`, whereas the `for` loop is looping through a known set of items so it runs through as many iterations as there are items in the set.
 
-```python
+```
 >>> colours = ['blue', 'green', 'red', 'purple']
 >>> for colour in colours:
 ...     print(colour)
@@ -425,7 +425,7 @@ purple
 'purple'
 ```
 
-```python
+```
 >>> colours = ['blue', 'green', 'red', 'purple']
 >>> for colour in colours:
 ...     if colour == 'blue':
@@ -442,7 +442,7 @@ green
 
 `Dictionary` is an unordered collection of data values, used to store data values like a map, which unlike other Data Types that hold only single value as an element, Dictionary holds key : value pair. `items()` method is used to return the list with all dictionary keys with values.
 
-```python
+```
 >>> ages = {'kevin': 59, 'bob': 40, 'kayla': 21}
 >>> for name, age in ages.items():
 ...     print(f"Person Named: {name}")
@@ -461,7 +461,7 @@ Age of: 21
 ### Logic Operations
 
 A boolean expression is an expression that is either true or false. The following examples use the operator `==`, which compares two operands and produces `True` if they are equal and `False` otherwise:
-```python
+```
 >>> 5 == 5
 True
 >>> 5 == 6
@@ -470,7 +470,7 @@ False
 ```
 Other comparison operators:
 
-```python
+```
 x != y               # x is not equal to y
 x > y                # x is greater than y
 x < y                # x is less than y
@@ -481,7 +481,7 @@ x is not y           # x is not the same as y
 ```
 True and False are special values that belong to the class bool; they are not strings:
 
-```python
+```
 >>> type(True)
 <class 'bool'>
 >>> type(False)
@@ -498,11 +498,11 @@ Finally, the `not` operator negates a boolean expression, so `not (x > y)` is tr
 
 Strictly speaking, the operands of the logical operators should be boolean expressions, but Python is not very strict. Any nonzero number is interpreted as “true.”
 
-```python
+```
 >>> 17 and True
 True
 ```
-```python
+```
 >>> name = ""
 >>> not name
 True
@@ -511,9 +511,142 @@ True
 ...
 no name given
 ```
-
 # Basic and Intermediate Scripting
 
+## Basic Scripting
+
+### Reading User Input
+
+Python provides a built-in function called `input` that gets input from the keyboard. When this function is called, the program stops and waits for the user to type something. When the user presses `Enter`, the program resumes and `input` returns what the user typed as a *string*.
+
+Before getting input from the user, it is a good idea to print a prompt telling the user what to input. You can pass a string to `input` to be displayed to the user before pausing for input:
+
+```
+#!/usr/bin/python3
+name = input("What is your name? ")
+birthdate = input("What is your birthdate? ")
+age = int(input("How old are you? "))
+print(f"{name} was born on {birthdate}")
+print(f"Half of your age is {age / 2}")
+```
+
+```bash
+ailin@Ailin:~/bin$ age
+What is your name? Ai Lin
+What is your birthdate? 11/11/2011
+How old are you? 11
+Ai Lin was born on 11/11/2011
+Half your age is 5.5
+```
+### Function Basics
+
+A function is a named sequence of statements that performs a computation. You can “call” the function by name. One example of a function call:
+
+```
+>>> type(32)
+<class 'int'>
+```
+The name of the function is `type`. The expression in parentheses is called the *argument* of the function. The argument is a value or variable that we are passing into the function as input to the function.
+
+When you define a function, you specify the *name* and the *sequence of statements*. `def` is a keyword that indicates that this is a function definition. The name of the function is `hello_world`. The empty parentheses after the name indicate that this function doesn’t take any arguments.
+
+```
+>>> def hello_world():
+...     print("Hello, World")
+...
+>>> hello_world()
+Hello, World
+>>>
+```
+To define an arguement, we will place *parameter* in the parentheses. Inside the function, the arguments are assigned to variables called *parameters*. This function assigns the argument to a parameter `name`. When the function is called, it prints the value of the parameter.
+
+```
+>>> def print_name(name):
+...     print(f"Name: {name}")
+...
+>>> print_name("Charmander")
+Name: Charmander
+>>> output = print_name("Keith")
+Name: Keith
+>>> output
+>>>
+```
+If we don’t explicitly declare a return value, then the result will be `None`. To return a result from a function, we use the `return` statement in our function.
+
+```
+>>> def add_two(num):
+...     return num + 2
+...
+>>> result = add_two(2)
+>>> print(result)
+4
+>>>
+```
+When this script executes, the `print` statement will print out “4” because the `add_two` function was called with 2 as argument. Within the function, the parameter `num` is 2. The function computed the sum of 2 + 2 and used the `return` statement to send the computed value back to the calling code as the function result, which was assigned to the variable `result` and printed out.
+
+### Using Functions in Scripts
+
+**Gathering Information**
+
+```python
+def gather_info():
+    height = float(input("What is your height? (inches or meters) "))
+    weight = float(input("What is your weight? (pounds or kilograms) "))
+    system = input("Are your mearsurements in metric or imperial systems? ").lower().strip() 
+    return (height, weight, system)
+```
+**Calculate and print BMI**
+
+```python
+def calculate_bmi(weight, height, system='metric'): # set the default of the function
+    if system == 'metric':
+        bmi = (weight / (height ** 2)) 
+    else:
+        bmi = 703 * (weight / (height ** 2)) 
+    return bmi
+```
+**Set up the script's flow**
+
+```python
+while True:
+    height, weight, system = gather_info() 
+    if system.startswith('i'):
+        bmi = calculate_bmi(weight, height, system)
+        print(system)
+        print(f"Your BMI is {bmi}") 
+        break
+ 
+    elif system.startswith('m'):
+        bmi = calculate_bmi(weight, height) 
+        print(f"Your BMI is {bmi}")
+        break
+    else:
+        print("Error: Unknown measurement system. Please use imperial or metric.")
+```
+1. We want to be able to re-prompt the user, so we want to utilize an intentional infinite loop (`while True`) that we can break out of. 
+2. The `gather_info` function is called and the `return` values are assigned to the variables `height, weight, system`.
+3. Use conditionals loop `if elif else` to check the system type.
+4. The function `calculate_bmi` takes the arguments `weight, height, system` as inputs. They are placed in the order of when the function`calculate_bmi` is created. A [positional argument](https://www.codingem.com/what-is-a-positional-argument-in-python/) in Python is an argument whose position matters in a function call. The argument must be provided in a correct position in a function call. We can pass the arguments as `keyword argument` so that the argument order does not matter. The interpreter knows which one of the arguments is height. 
+
+    `bmi = calculate_bmi(height=height, system=system, weight=weight)`
+
+## Intermediate Scripting
+
+### Parsing Command Line Parameters
+
+### Robust CLIs with argparse
+
+### Catching an exception
+
+### Exit Statuses
+
+### Execute Shell Commands
+
+### Advanced Iteration with List Comprehension
+
+# Libraries: PIP, Virtual/Env
+
+# Building a Web Application with Python and Flask
 
 
 _[Back to the top](#table-of-contents)_

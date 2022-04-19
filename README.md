@@ -11,7 +11,7 @@
 - [Linkedin](https://www.linkedin.com) for jobs, visibility to recruiters.
 - [Twitter](https://twitter.com/) look out for latest updates
 - Setup for interview and meeting: Maono AU-PM360TR, Blue Snowball Ice, Tin Hifi T2 Plus, Ugreen audio interface
-
+- [Skills Framework for Infocomm Technology](https://www.imda.gov.sg/cwp/assets/imtalent/skills-framework-for-ict/index.html)
 
 ## Self learning 
 
@@ -24,4 +24,5 @@
 ## Helpful tools
 
 - [Chmod calculator](https://chmod-calculator.com/)
+
 
