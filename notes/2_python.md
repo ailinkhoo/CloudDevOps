@@ -6,7 +6,11 @@
   - [Common Data Types](#common-data-types)
   - [Control Flow](#control-flow)
 - [Basic and Intermediate Scripting](#basic-and-intermediate-scripting)
+  - [Basic Scripting](#basic-scripting)
+  - [Intermediate Scripting](#intermediate-scripting)
 - [Libraries: PIP, Virtual/Env](#libraries-pip-virtualenv)
+  - [Useful Standard Library Packages](#useful-standard-library-packages)
+  - [Using Pip and Virtualenv](#using-pip-and-virtualenv)
 - [Building a Web Application with Python and Flask](#building-a-web-application-with-python-and-flask)
 
 # Getting Started with Python
@@ -438,7 +442,7 @@ green
 ```
 1. blue will populate the variable colour, it will hit `continue` and go back to the body of `for` loop.
 2. green will populate the variable colour, it will go the `print(colour)` statement and go back to the body of `for` loop.  
-3. red will populate the variable colour, `break` statement will be executed and it will break out of `for` loop.   
+3. red will populate the variable colour, `break` statement will be executed and it will break out of `for` loop without going to the `print` statement.
 
 `Dictionary` is an unordered collection of data values, used to store data values like a map, which unlike other Data Types that hold only single value as an element, Dictionary holds key : value pair. `items()` method is used to return the list with all dictionary keys with values.
 
@@ -586,6 +590,8 @@ When this script executes, the `print` statement will print out “4” because 
 
 ### Using Functions in Scripts
 
+Write a script that prompts the user for some information and calculates the user’s Body Mass Index (BMI). We want to prompt the user for their information, gather the results, and make the calculations if we can. If we can’t understand the measurement system, then we need to prompt the user again after explaining the error.
+
 **Gathering Information**
 
 ```python
@@ -630,9 +636,324 @@ while True:
 
     `bmi = calculate_bmi(height=height, system=system, weight=weight)`
 
+
+### Using Standard Library packages
+
+There are a lot of functions that we can use if we import them from the standard library.  Here’s how we can import the time module for use:
+
+```
+>>> import time
+>>> print(time)
+<module 'time' (built-in)>
+```
+This statement creates a *module object* named `time`. The module object contains the functions and classes defined in the module. To access one of the functions, you have to specify the name of the module and the name of the function, separated by a period. This format is called *dot notation*. Let’s call the `localtime` function provided by the time package:
+
+```
+>>> now = time.localtime()
+>>> now
+time.struct_time(tm_year=2022, tm_mon=4, tm_mday=19, tm_hour=18, tm_min=4, tm_sec=36, tm_wday=1, tm_yday=109, tm_isdst=0)
+>>> now.tm_hour
+18
+```
+Calling this function returns a time.struct_time to use that has some attributes that we can interact with using a period (.). Here is our first time interaction with an attribute on an object that isn’t a function. Sometimes we need to access the data from an object, and for that,
+we don’t need to use parentheses.
+
+```python
+import time
+
+start_time = time.localtime()
+print(f"Timer started at {time.strftime('%X', start_time)}")
+
+#Wait for user to stop timer
+input("Press 'Enter' to stop timer ")
+
+stop_time = time.localtime()
+difference = time.mktime(stop_time) - time.mktime(start_time)
+
+print(f"Timer stopped at {time.strftime('%X', stop_time)}")
+print(f"Total time: {difference} seconds")
+print(time.mktime(stop_time))
+print(time.mktime(start_time))
+```
+```
+Timer started at 18:46:35
+Press 'Enter' to stop timer 
+Timer stopped at 18:46:55
+Total time: 20.0 seconds
+1650365215.0
+1650365195.0
+```
+
+1. Call the function `time.localtime()` and assign to variable `start_time`.
+2. `time.strftime()` converts `struct_time` representing a time as returned by `localtime()` to a string as specified by the format argument. `%X` is the locale’s appropriate time representation.
+3. Call the `input` function, the program stops and waits for the user to type something. When the user presses `Enter`, the program resumes.
+4. `time.localtime()` is called again to get the stop_time. 
+5. `time.mktime()` converts a time_struct into a numeric value so we can calculate the time difference. It returns a floating point number.
+
+We’re only using a subset of the functions from the time package, and it’s a good practice to only import what we need. We can import a subset of a module using the `from` statement combined with `import`.
+
+```python
+from time import localtime, mktime, strftime
+
+start_time = localtime()
+print(f"Timer started at {strftime('%X', start_time)}")
+
+#Wait for user to stop timer
+input("Press 'Enter' to stop timer ")
+
+stop_time = localtime()
+difference = mktime(stop_time) - mktime(start_time)
+
+print(f"Timer stopped at {strftime('%X', stop_time)}")
+print(f"Total time: {difference} seconds")
+print(mktime(stop_time))
+print(mktime(start_time))
+```
+
+### Working with Environment Variables
+
+We can access environment variables from inside of our Python scripts and use environment variables to configure a script or CLI. 
+
+The `os` module allows us to access functionality of the underlying operating system. So we can perform tasks such as: navigate the file system, obtain file information, rename files, search directory trees, fetch environment variables, and many other operations. By **importing** the `os` package, we’re able to access a lot of miscellaneous operating system level attributes and functions, not the least of which is the `environ` object. This object behaves like a dictionary, so we can use the subscript operation to read from it. It is mapping object where keys and values are strings that represent the process environment. For example, environ['HOME'] is the pathname of your home directory. 
+
+```
+import os
+>>> print(os.environ['HOME'])
+/home/ailin
+```
+Printing all the environment variables (key-value pairs) will show theenvironment variables name and values will get printed.
+```
+>>> for k, v in os.environ.items():
+...     print(f'{k}={v}')
+...
+SHELL=/bin/bash
+WSL_DISTRO_NAME=Ubuntu
+```
+Read a `'STAGE'` environment variable and print out what stage we’re currently running in:
+```python
+import os
+
+stage = os.environ["STAGE"].upper()
+
+output = f"We're running in {stage}"
+
+if stage.startswith("PROD"):
+    output = "DANGER!!! - " + output
+print(output)
+```
+```
+Traceback (most recent call last):
+  File "c:\Users\Khoo Ai Lin\Desktop\Cloud suport and devops\CloudDevOps\2_python\osmodule.py", line 5, in <module>
+    stage = os.environ["STAGE"].upper()
+  File "C:\Users\Khoo Ai Lin\AppData\Local\Programs\Python\Python310\lib\os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'STAGE'
+```
+```
+>>> print(os.environ.get('STAGE'))
+None
+```
+Using `get` will return `None` if a key is not present rather than raise a `KeyError`.
+
+```python
+import os
+stage = os.getenv("STAGE", "dev").upper()
+output = f"We're running in {stage}"
+if stage.startswith("PROD"):
+    output = "DANGER!!! - " + output
+print(output)
+```
+
+```
+We're running in DEV
+```
+
+If the `STAGE` environment variable isn’t set, then we want to change the default to `DEV`and we can do that by using the `os.getenv` function. 
+`getenv(key, default=None)` If the key does not exist, `None` will be returned if we did not change the default. 
+
+### Interacting with Files
+
+When we want to read or write a file (say on your hard drive), we first must open the file. Opening the file communicates with your operating system, which knows where the data for each file is stored. When you open a file, you are asking the operating system to find the file by name and make sure the file exists. 
+
+```
+>>> file_handle = open('xmen_base.txt')
+>>> print(file_handle)
+<_io.TextIOWrapper name='xmen_base.txt' mode='r' encoding='UTF-8'>
+```
+If the `open` is successful, the operating system returns us a file handle. The file handle is not the actual data contained in the file, but instead it is a “handle” that we can use to read the data.
+
+There are four different methods (modes) for opening a file:
+
+- `r` - Read - Default value. Opens a file for reading, error if the file does not exist
+
+- `a` - Append - Opens a file for appending, creates the file if it does not exist
+
+- `w` - Write - Opens a file for writing, creates the file if it does not exist
+ 
+- `x` - Create - Creates the specified file, returns an error if the file exists
+
+- `a` open for writing, appending to the end of file if it exists
+
+- `b` binary mode
+
+- `t` text mode (default)
+
+- `+` open for updating (reading and writing)
+
+
+```
+>>> import io
+>>> dir(io.TextIOWrapper)
+['_CHUNK_SIZE', '__class__', '__del__', '__delattr__', '__dict__', '__dir__', '__doc__', '__enter__', '__eq__', '__exit__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__lt__', '__ne__', '__new__', '__next__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '_checkClosed', '_checkReadable', '_checkSeekable', '_checkWritable', '_finalizing', 'buffer', 'close', 'closed', 'detach', 'encoding', 'errors', 'fileno', 'flush', 'isatty', 'line_buffering', 'name', 'newlines', 'read', 'readable', 'readline', 'readlines', 'reconfigure', 'seek', 'seekable', 'tell', 'truncate', 'writable', 'write', 'write_through', 'writelines']
+```
+We can use `dir()` to check the available methods for `io.TextIOWrapper`.
+
+`read` gives us all of the contents as a single string but notice that it gave us an empty string when we called the function as second time. That happens because the file maintains a cursor position and when we first called `read` the cursor was moved to the very end of the file’s contents. 
+
+```
+>>> file_handle.read()
+'Storm\nWolverine\nCyclops\nBishop\nNightcrawler\n'
+>>> file_handle.read()
+''
+```
+If we want to reread the file we’ll need to move the beginning of the file using the `seek` function. Seek to `0` and it will go to the beginning of file. By seeking to a specific point of the file, we are able to get a string that only contains what is after our cursor’s location. We can seek to `6` which is the position of the `W` character.
+
+```
+>>> file_handle.seek(0)
+0
+>>> file_handle.read()
+'Storm\nWolverine\nCyclops\nBishop\nNightcrawler\n'
+>>> file_handle.seek(6)
+6
+>>> file_handle.read()
+'Wolverine\nCyclops\nBishop\nNightcrawler\n'
+```
+We can read through content is by using a for loop:
+
+```
+>>> for line in file_handle:
+...     print(line, end="")
+...
+Storm
+Wolverine
+Cyclops
+Bishop
+Nightcrawler
+```
+Once we’re finished working with a file, it is important that we close our
+connection to the file using the `close` function:
+
+```
+>>> file_handle.close()
+>>> file_handle.read()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: I/O operation on closed file.
+```
+If the file already exists, opening it in write mode clears out the old data and starts fresh, so be careful! If the file doesn’t exist, a new one is created.
+Let’s create a copy of our xmen file (new_xmen.txt) that we can add additional content to:
+
+```
+>>> file_handle = open('xmen_base.txt')
+>>> new_fh = open('new_xmen.txt', 'w')
+>>> new_fh
+<_io.TextIOWrapper name='new_xmen.txt' mode='w' encoding='UTF-8'>
+```
+The write method of the file handle object puts data into the file, returning the number of characters written. The default write mode is text for writing (and reading) strings. However, we could not read the file handle as we only open for writing. Therefore, we close the file and reopened the file, using the `r+` mode which will allow us to read and write content to the file.
+
+```
+>>> new_fh.write(file_handle.read())
+44
+>>> new_fh.read()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+io.UnsupportedOperation: not readable
+>>> new_fh.close()
+>>> new_fh = open('new_xmen.txt', 'r+')
+>>> new_fh.read()
+'Storm\nWolverine\nCyclops\nBishop\nNightcrawler\n'
+```
+
+```
+>>> new_fh.seek(0)
+0
+>>> new_fh.write("Beast\n")
+6
+>>> new_fh.write("Phoenix\n")
+8
+>>> new_fh.seek(0)
+0
+>>> new_fh.read()
+'Beast\nPhoenix\ne\nCyclops\nBishop\nNightcrawler\n'
+>>> new_fh.close()
+>>> file_handle.close()
+```
+A fairly common thing to want to do is to append to a file without reading its current contents. This can be done with the `a` mode. Let’s close the `xmen_base.txt` file and reopen it in the `a` mode to add another name without worrying about losing our original content. This time, we’re going to use the `with` statement to temporarily open the file and have it automatically closed after our code block has executed. There is no need to call `file.close()` when using `with` statement.
+
+```
+>>> with open('xmen_base.txt', 'a') as file:
+...     file.write('Professor Xavier\n')
+...
+17
+```
+Another way of creating the file variable outside the `with` statement:
+
+```
+>>> file = open('xmen_base.txt', 'a')
+>>> with file:
+...     file.write("Something\n")
+...
+10
+>>> exit()
+```
+```
+$ cat xmen_base.txt
+Storm
+Wolverine
+Cyclops
+Bishop
+Nightcrawler
+Professor Xavier
+Something
+```
+
 ## Intermediate Scripting
 
 ### Parsing Command Line Parameters
+
+The `sys` module provides valuable information about the Python interpreter. You can also use it to obtain details about the constants, functions and methods of the Python interpreter.
+
+`argv` function is used to display the arguments used while executing the script or to store for other purposes.
+
+Write a script:
+```
+#!/usr/bin/python3
+import sys
+print(f"First argument {sys.argv[0]}")
+```
+Run the script (The first argument is the script itself):
+```
+$ chmod u+x ~/bin/param_echo
+$ param_echo testing
+First argument /home/user/bin/param_echo
+```
+Another example to get index of `1`: 
+
+```
+#!/usr/bin/python3
+
+import sys
+print(f"Positional arguments: {sys.argv[1:]}")
+print(f"First argument: {sys.argv[1]}")
+```
+```
+$ param_echo testing testing12 'another argument'
+Positional arguments: ['testing', 'testing12', 'another argument']
+First argument: testing
+```
+Positional arguments are based on spaces unless we explicitly wrap the
+argument in quotes (`'another argument'`).
+
 
 ### Robust CLIs with argparse
 
@@ -645,6 +966,10 @@ while True:
 ### Advanced Iteration with List Comprehension
 
 # Libraries: PIP, Virtual/Env
+
+## Useful Standard Library Packages
+
+## Using Pip and Virtualenv
 
 # Building a Web Application with Python and Flask
 

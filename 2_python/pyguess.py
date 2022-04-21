@@ -6,18 +6,18 @@ import random # module, library
 n = random.randint(1, 99)
 
 # Ask user to guess the number
-try: 
-    while n != "guess":
+try:
+    while n != "guess": # while loop that continues as long as the input is different from the random number
         guess = int(input("Enter an integer from 1 to 99: "))
-        if guess > 99 or guess < 1:
+        if guess > 99 or guess < 1: # check if the user entered a number within the given range
             print ("out of range")
-        elif guess < n: 
+        elif guess < n:
             print ("guess is low")
         elif guess > n: 
             print ("guess is high")
         else:
             print ("you guessed it!")
-            break
+            break #break out of the while loop
 except:
     print('Error, please enter numeric input')
      
