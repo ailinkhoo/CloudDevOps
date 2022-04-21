@@ -828,7 +828,7 @@ If we want to reread the file we’ll need to move the beginning of the file usi
 >>> file_handle.read()
 'Wolverine\nCyclops\nBishop\nNightcrawler\n'
 ```
-We can read through content is by using a for loop:
+We can read through content by using a for loop:
 
 ```
 >>> for line in file_handle:
@@ -921,7 +921,7 @@ Something
 
 ### Parsing Command Line Parameters
 
-The `sys` module provides valuable information about the Python interpreter. You can also use it to obtain details about the constants, functions and methods of the Python interpreter.
+The `sys` module provides valuable information about the Python interpreter. You can use it to obtain details about the constants, functions and methods of the Python interpreter.
 
 `argv` function is used to display the arguments used while executing the script or to store for other purposes.
 
@@ -956,6 +956,93 @@ argument in quotes (`'another argument'`).
 
 
 ### Robust CLIs with argparse
+
+We will look at how to build **Command Line Interfaces** with [argparse](https://realpython.com/command-line-interfaces-python-argparse/) module. Using the [Python argparse](https://docs.python.org/3/howto/argparse.html#id1) library has four steps:
+
+1. Import the Python `argparse` library
+2. Create the parser
+3. Add optional and positional arguments to the parser
+4. Execute `.parse_args()`
+
+```
+#!/usr/bin/python3
+
+import argparse
+
+parser = argparse.ArgumentParser(description="This CLI is about reversing the filename")
+parser.add_argument('filename', help='the file to read')
+args = parser.parse_args()
+print(args)
+print(args.filename)
+```
+1. Import the `argparse` library
+2. Create the parser with a brief description of the purpose. 
+3. Add the argument `filename` which is the positional argument that we want to get from the user. 
+4. Execute the `parse_args()` method to parse the input arguments and get a `Namespace` object that contains the user input. 
+
+```
+ailin@Ailin:~/bin$ vim reverse-file
+ailin@Ailin:~/bin$ chmod u+x reverse-file
+ailin@Ailin:~/bin$ reverse-file
+usage: reverse-file [-h] filename
+reverse-file: error: the following arguments are required: filename
+ailin@Ailin:~/bin$ reverse-file -h
+usage: reverse-file [-h] filename
+
+This CLI is about reversing the filename
+
+positional arguments:
+  filename    the file to read
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+ailin@Ailin:~/bin$ reverse-file xmen_base.txt
+Namespace(filename='xmen_base.txt')
+xmen_base.txt
+
+```
+1. Create the script `reverse-file` and make it executable. 
+2. When we run the program, an error message is shown and that it accepts an optional `-h` flag. 
+3. The program responds to the `-h` flag, displaying a help message. 
+4. After you executing `.parse_args()`, we get a `Namespace` object that contains a simple property for each input argument received from the command line.
+
+```
+#!/usr/bin/python3
+
+import argparse
+parser = argparse.ArgumentParser(description="This CLI is about reversing the filename")
+parser.add_argument('filename', help='the file to read')
+parser.add_argument('--limit', '-l', type=int, help='the number of 
+lines to read')
+parser.add_argument('--version', '-v', action='version', version='%
+(prog)s 1.0')
+args = parser.parse_args()
+print(args)
+```
+```
+ailin@Ailin:~/bin$ reverse-file --version
+reverse-file 1.0
+ailin@Ailin:~/bin$ reverse-file --limit 5 xmen_base.txt
+Namespace(filename='xmen_base.txt', limit=5)
+ailin@Ailin:~/bin$ reverse-file -h
+usage: reverse-file [-h] [--limit LIMIT] [--version] filename
+
+Read a file in reverse
+
+positional arguments:
+  filename              the file to read
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --limit LIMIT, -l LIMIT
+                        the number of lines to read
+  --version, -v         show program's version number and exit
+```
+
+1. Add the optional arguments `-l` and `-v` to our parser.
+2. To specify that an argument is a flag, we need to place two hyphens at the
+beginning of the flag’s name. We’ve used the `type` option for `add_argument` to state that we want the value converted to an integer  as `argparse` treats the options we give it as strings, and we specified a shorter version of the flag as our second argument.
 
 ### Catching an exception
 
