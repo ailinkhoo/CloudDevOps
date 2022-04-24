@@ -112,7 +112,7 @@ Below you will see the changes are displayed in a code comparison. Once ready, s
 
 Select Merge pull request, and then Confirm merge.
 
-![pull request2](images/pullrequest3.png)
+![pull request3](images/pullrequest3.png)
 
 Back in the Jenkins server, devops-esentials-sample -> master
 On the new page, select build now from the sidebar. A new build will begin. *Build* is doing the build automation, *DeployToStage* deploys to staging server. When it gets to the *DeployToProd* stage, it will pause and wait for our input.
