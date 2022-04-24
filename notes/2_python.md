@@ -1044,9 +1044,109 @@ optional arguments:
 2. To specify that an argument is a flag, we need to place two hyphens at the
 beginning of the flag’s name. We’ve used the `type` option for `add_argument` to state that we want the value converted to an integer  as `argparse` treats the options we give it as strings, and we specified a shorter version of the flag as our second argument.
 
+```
+#!/usr/bin/python3
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Read a file in reverse')
+parser.add_argument('filename', help='the file to read')
+parser.add_argument('--limit', '-l', type=int, help='the number of lines to read')
+parser.add_argument('--version', '-v', action='version', version='%(prog)s 1.0')
+
+args = parser.parse_args()
+
+
+with open(args.filename) as f:
+    lines = f.readlines()
+    lines.reverse()
+
+    if args.limit:
+        lines = lines[:args.limit]
+
+    for line in lines:
+        print(line.strip()[::-1])
+
+```
+```
+ailin@Ailin:~/bin$ reverse-file xmen_base.txt
+gnihtemoS
+reivaX rosseforP
+relwarcthgiN
+pohsiB
+spolcyC
+enirevloW
+mrotS
+```
+
+1. `with` statement to temporarily open the file and have it automatically closed after our code block has executed. `f` is the file handle: `<_io.TextIOWrapper name='xmen_base.txt' mode='r' encoding='UTF-8'>`
+2. `readlines()` method we're going to take the lines out of this file, it's going to take every individual line from the file and return to us as a list. 
+
+    `['Storm\n', 'Wolverine\n', 'Cyclops\n', 'Bishop\n', 'Nightcrawler\n', 'Professor Xavier\n', 'Something\n']`
+3. `reverse()` method on the list type will make whatever was the last object or item, the first item and so on and so forth. 
+
+    `['Something\n', 'Professor Xavier\n', 'Nightcrawler\n', 'Bishop\n', 'Cyclops\n', 'Wolverine\n', 'Storm\n']`
+
+4. `if args.limit:` means if limit is passed, `lines[:args.limit]` will give the beginning to the limit. 
+
+5. `strip()` get rid of the newline character.
+
+6. `[::-1]` means it'll start at the very end and it will go backwards through the characters and return us a new string that is all of the characters in reverse. The slice notation has the syntax `list[<start>:<stop>:<step>]`. We can use a negative step to obtain a reversed list like the following example: 
+    ```
+    >>> nums = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+    >>> nums[::-1]
+    [90, 80, 70, 60, 50, 40, 30, 20, 10]
+    ```
+
 ### Catching an exception
 
+There is a conditional execution structure built into Python to handle these types of expected and unexpected errors called `try and except`. The idea of try and except is that you know that some sequence of instructions may have a problem and you want to add some statements to be executed if an error occurs. 
+
+Python starts by executing the sequence of statements in the `try` block. If all goes well, it skips the `except` block and proceeds. If an exception occurs in the `try` block, Python jumps out of the `try` block and executes the sequence of statements in the `except` block.
+
+```
+ailin@Ailin:~/bin$ reverse-file fake.txt
+Traceback (most recent call last):
+  File "/home/ailin/bin/reverse-file", line 13, in <module>
+    with open(args.filename) as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'fake.txt'
+```
+```
+try:
+    with open(args.filename) as f:
+        lines = f.readlines()
+        lines.reverse()
+
+        if args.limit:
+            lines = lines [:args.limit]
+
+        for line in lines:
+            print(line.strip()[::-1])
+
+except FileNotFoundError as err:
+    print(f"Error: {err}")
+```
+
+```
+ailin@Ailin:~/bin$ reverse-file fake.txt
+Error: [Errno 2] No such file or directory: 'fake.txt'
+```
+
 ### Exit Statuses
+
+Standard exit codes are received when python program executes. Successful execution returns `0` and unsuccessful execution returns `1`.
+Set the exit status to `1` to be indicative of an error.
+```
+except FileNotFoundError as err:
+    print(f"Error: {err}")
+    sys.exit(1)
+```
+```
+ailin@Ailin:~/bin$ reverse-file fake.txt
+Error: [Errno 2] No such file or directory: 'fake.txt'
+ailin@Ailin:~/bin$ echo $?
+1
+```
 
 ### Execute Shell Commands
 
