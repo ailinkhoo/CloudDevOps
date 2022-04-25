@@ -962,7 +962,7 @@ We will look at how to build **Command Line Interfaces** with [argparse](https:/
 1. Import the Python `argparse` library
 2. Create the parser
 3. Add optional and positional arguments to the parser
-4. Execute `.parse_args()`
+4. Execute `.parse_args()` method and store the parsed arguments as `args` variable. 
 
 ```
 #!/usr/bin/python3
@@ -973,13 +973,23 @@ parser = argparse.ArgumentParser(description="This CLI is about reversing the fi
 parser.add_argument('filename', help='the file to read')
 args = parser.parse_args()
 print(args)
+print(type(args))
 print(args.filename)
+print(type(args.filename))
 ```
+```
+ailin@Ailin:~/bin$ reverse-file xmen_base.txt
+Namespace(filename='xmen_base.txt', limit=None)
+<class 'argparse.Namespace'>
+xmen_base.txt
+<class 'str'>
+```
+
 1. Import the `argparse` library
 2. Create the parser with a brief description of the purpose. 
 3. Add the argument `filename` which is the positional argument that we want to get from the user. 
-4. Execute the `parse_args()` method to parse the input arguments and get a `Namespace` object that contains the user input. 
-
+4. Execute the `parse_args()` method to parse the input arguments and get a `Namespace` object that contains the user input: `Namespace(filename='xmen_base.txt', limit=None)`
+5. `args.filename` will return the file name that was entered. 
 ```
 ailin@Ailin:~/bin$ vim reverse-file
 ailin@Ailin:~/bin$ chmod u+x reverse-file
@@ -1005,7 +1015,7 @@ xmen_base.txt
 1. Create the script `reverse-file` and make it executable. 
 2. When we run the program, an error message is shown and that it accepts an optional `-h` flag. 
 3. The program responds to the `-h` flag, displaying a help message. 
-4. After you executing `.parse_args()`, we get a `Namespace` object that contains a simple property for each input argument received from the command line.
+4. After executing `.parse_args()`, we get a `Namespace` object that contains a simple property for each input argument received from the command line.
 
 ```
 #!/usr/bin/python3
@@ -1041,8 +1051,7 @@ optional arguments:
 ```
 
 1. Add the optional arguments `-l` and `-v` to our parser.
-2. To specify that an argument is a flag, we need to place two hyphens at the
-beginning of the flag’s name. We’ve used the `type` option for `add_argument` to state that we want the value converted to an integer  as `argparse` treats the options we give it as strings, and we specified a shorter version of the flag as our second argument.
+2. To specify that an argument is a flag, we need to place two hyphens at the beginning of the flag’s name. We’ve used the `type` option for `add_argument` to state that we want the value converted to an integer  as `argparse` treats the options we give it as strings, and we specified a shorter version of the flag as our second argument.
 
 ```
 #!/usr/bin/python3
