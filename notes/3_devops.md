@@ -17,19 +17,17 @@
 
 ## DevOps Concepts and Practices
 
-- [What is DevOps](https://webapp.io/blog/what-is-devops/)
-
-- Build Automation: automation of the process of preparing code for deployment to a live environment. Depending on what languages are used, code needs to be compiled, linted, minified, transformed, 
+- **Build Automation**: automation of the process of preparing code for deployment to a live environment. Depending on what languages are used, code needs to be compiled, linted, minified, transformed, 
 unit tested, etc. Build automation means taking these steps and doing them in a consistent, automated way using a script or tool.
 
-- [Continuous Integration](https://webapp.io/blog/what-is-ci/): the practice of frequently merging code changes done by developers
+- **[Continuous Integration](https://webapp.io/blog/what-is-ci/)**: the practice of frequently merging code changes done by developers
 
-- [Continuous Delivery and Continuous Deployment](https://github.com/MichaelCade/90DaysOfDevOps/blob/main/Days/day70.md)
+- **[Continuous Delivery and Continuous Deployment](https://github.com/MichaelCade/90DaysOfDevOps/blob/main/Days/day70.md)**
   
   - Continuous Delivery: the practice of continuously maintaining code in a deployable state
   - Continuous Deployment: the practice of frequently deploying small code changes to production
 
-- [Infrastructure as Code](https://github.com/MichaelCade/90DaysOfDevOps/blob/main/Days/day56.md): manage and provision infrastructure through code and automation.
+- **[Infrastructure as Code](https://github.com/MichaelCade/90DaysOfDevOps/blob/main/Days/day56.md)**: manage and provision infrastructure through code and automation.
 
   Without infrastructure as code you might:
   - ssh into a host
@@ -40,9 +38,9 @@ unit tested, etc. Build automation means taking these steps and doing them in a 
   - Commit them to source control
   - Use an automation tool to enact the changes defined in the code and/or configuration files
 
-- Configuration Management: maintaining and changing the state of pieces of infrastructure in a consistent, maintainable, and stable way. Configuration management allows you to minimize configuration drift – the small changes that accumulate over time and make systems different from one another and harder to manage. 
+- **Configuration Management**: maintaining and changing the state of pieces of infrastructure in a consistent, maintainable, and stable way. Configuration management allows you to minimize configuration drift – the small changes that accumulate over time and make systems different from one another and harder to manage. 
 
-- Orchestration: automation that supports processes and workflows, such as provisioning resources.
+- **Orchestration**: automation that supports processes and workflows, such as provisioning resources.
 
   - *Scalability* – Resources can be quickly increased or decreased to meet changing needs.
   - *Stability* – Automation tools can automatically respond to fix problems before users see them.
@@ -51,10 +49,10 @@ unit tested, etc. Build automation means taking these steps and doing them in a 
   - *Granular insight into resource usage* – Orchestration tools give greater insight into how many resources 
   are being used by what software, services, or customers.
 
-- Monitoring: The collection and presentation of data about the performance and stability of services and infrastructure. Organizations monitor metrics and logs to see how application and infrastructure performance impacts the experience of their product’s end user. Monitoring tools collect data over things such as:
+- **Monitoring**: The collection and presentation of data about the performance and stability of services and infrastructure. Organizations monitor metrics and logs to see how application and infrastructure performance impacts the experience of their product’s end user. Monitoring tools collect data over things such as:
 usage of memory, cpu, disk i/o, application logs, network traffic.
 
-- Microservices: The microservices architecture is a design approach to build a single application as a set of small services. Microservices are loosely coupled: Different microservices interact with each other using stable and 
+- **Microservices**: The microservices architecture is a design approach to build a single application as a set of small services. Microservices are loosely coupled: Different microservices interact with each other using stable and 
 well-defined APIs. 
 
   - *Modularity* – Microservices encourage modularity. In monolithic apps, individual pieces become tightly coupled, and complexity grows. Eventually, it’s very hard to change anything without breaking something. 
@@ -188,7 +186,17 @@ $ ls -a big_project.git/
 
 All of the repository information is in the root of this directory instead of `.git`. 
 
+`git clone [url]`: Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits.
 
+`git remote -v`: Show the associated remote repositories and their stored name, like origin.
+
+```
+$ git remote -v
+origin  https://github.com/ailinkhoo/intake5_git_demo.git (fetch)
+origin  https://github.com/ailinkhoo/intake5_git_demo.git (push)
+upstream        https://github.com/ytbryan/intake5_git_demo.git (fetch)
+upstream        https://github.com/ytbryan/intake5_git_demo.git (push)
+```
 ### Basic Configuration of Git
 
 There are two main settings that you will need to have in place for your Git environment, and they are your name and your email address.
@@ -216,8 +224,7 @@ $ git config user.email
 ailinkhoo11@gmail.com
 
 ```
-We will set up the email address that we want to be used when tracking changes to this project. Notice that we did not use the `--global` option here as we only wanted to change the email address for this particular project, we also needed to be in this project's working directory in order to make this
-change. We can test this by running the Git config command on email setting and here we see only the `test@email.com` address being used and if we go back to our home directory and check our email settings again, we see that Git will use the default one that we have set up in our global configuration file.
+We will set up the email address that we want to be used when tracking changes to this project. Notice that we did not use the `--global` option here as we only wanted to change the email address for this particular project, we also needed to be in this project's working directory in order to make this change. We can test this by running the Git config command on email setting and here we see only the `test@email.com` address being used and if we go back to our home directory and check our email settings again, we see that Git will use the default one that we have set up in our global configuration file.
 
 ### Adding Files to a Project 
 
@@ -237,11 +244,11 @@ Changes to be committed:
 ```
 ### The Status of Your Project
 
-`git status -s`: view the output in shortened format
-`A`: file has been added to the index
-`??`: file is not tracked
-`M`: file is modified
-`git status -v`: shows more "verbose" detail including the textual changes of any uncommitted files
+- `git status -s`: view the output in shortened format
+- `A`: file has been added to the index
+- `??`: file is not tracked
+- `M`: file is modified
+- `git status -v`: shows more "verbose" detail including the textual changes of any uncommitted files
 
 ```
 $ git status
@@ -277,6 +284,7 @@ A  new_file2
 Commits are the building blocks of "save points" within Git's version control. 
 
 `git commit -m "<MESSGAE>"`: performs a commit with a specific message.
+
 `git commit -am <MESSGAE>"`: In addition to including the commit message, this option allows you to skip the staging phase. The addition of `-a` will automatically stage any files that are already being tracked by Git (changes to files that you've committed before).
 
 Git will take the first two characters of the SHA 1 hash value and create a directory under the objects directory.
@@ -303,7 +311,7 @@ $ ls .git/objects/9f
 f2aae193175fca3119c2cb9d65eb51f1f4005e
 ```
 
-`git rm --cached <FILENAME>`: which we'll remove it from our index, but leave the actual file behind in our working directory.
+`git rm --cached <FILENAME>`: remove file from index, but leave the actual file behind in our working directory.
 
 ```
 $ git rm --cached sample-file
@@ -322,8 +330,39 @@ $ git commit -m "delete sample-file"
  delete mode 100644 sample-file
 ```
 
-The `D` means the file is deleted. So in order to clean this up, we just need to run another commit.
+The `D` means the file is deleted. So in order to clean this up, we just need to run another commit. 
 
 ### Ignoring Certain File Types
+
+There is an `exclude` file within the `info` directory. This file laid out some basic patterns for files that Git could ignore and not
+bother tracking. This is a useful file, but most projects will use a `.gitignore` file in their project directory instead. 
+The `.gitignore` file is a text file that tells Git which files or folders to ignore in a project. A local `.gitignore` file is usually placed in the root directory of a project. 
+
+```
+$ touch .gitignore
+
+$ echo *.txt > .gitignore
+
+$ cat .gitignore
+*.txt
+
+$ touch peanuts.txt
+
+$ touch shoes.txt
+
+$ git add .
+
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .gitignore
+        new file:   sample-file
+
+$ git check-ignore *.txt
+peanuts.txt
+shoes.txt
+```
+We can use `git check-ignore` to see what files are being excluded.
 
 _[Back to the top](#table-of-contents)_
