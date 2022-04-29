@@ -21,3 +21,6 @@ Below you will find links to the notes for each lesson.
 - [Python for Everybody](https://www.py4e.com/lessons)
 
 - [Python documentation](https://docs.python.org/3/)
+
+- [Git Guides](https://github.com/git-guides)
+

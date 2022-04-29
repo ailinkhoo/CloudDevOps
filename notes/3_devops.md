@@ -5,6 +5,8 @@
   - [DevOps Culture](#devops-culture)
   - [DevOps Concepts and Practices](#devops-concepts-and-practices)
 - [Source Control and Git](#source-control-and-git)
+  - [The Basics of Using Git](#the-basics-of-using-git)
+  - [Tags, Branching, Merging and Reverting](#tags-branching-merging-and-reverting)
 - [Containerization with Docker](#containerization-with-docker)
 
 # DevOps Theory and Practice
@@ -72,7 +74,7 @@ well-defined APIs.
 
 2. **Staging Server** (Test Server) where we deploy our code to ensure the deployment works before going into Production Server.
 
-3. **Continuous Integration**, CI Server is using Jenkins to orchstrate the process. It will take the code from GitHub and deploy to Staging and then to Production.
+3. **Continuous Integration**, CI Server is using Jenkins to orchestrate the process. It will take the code from GitHub and deploy to Staging and then to Production.
 
 **Execute the Initial Deployment**
 Set up a Continuous Integration server by configuring the Jenkins project to look at the GitHub repo. 
@@ -364,5 +366,124 @@ peanuts.txt
 shoes.txt
 ```
 We can use `git check-ignore` to see what files are being excluded.
+
+### Git Commands
+
+```
+git add .; git commit -m "Updates"
+```
+
+
+
+## Tags, Branching, Merging and Reverting
+
+
+## Containerization with Docker
+
+Containers enable you to package your application in a portable way that can run in many environments. The most popular container platform is **Docker**.
+
+### Docker Images
+
+```
+$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete
+Digest: sha256:10d7d58d5ebd2a652f4d93fdd86da8f265f5318c6a73cc5b6a9798ff6d2b2e67
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+```
+1. At the terminal, when we type `docker run hello-world`, the client will contact the docker server.
+2. The docker server will check for the local copy of the image `hello-world`. As there is no image in the image cache, the Docker server will download the image from Docker Hub (a public registry) and store it in the image cache.
+3. A new container is created from the image and the program is executed which is to print out the message. 
+
+### Dockerfile
+
+`dockerfile` contains code to build the image. It is where you write the instructions to build a Docker image.
+
+### Container Ports
+
+
+### Container Volumes
+
+Create a volume by using the `docker volume create` command.
+
+```
+docker volume create <Volume Name>
+```
+Start the container, add the `-v` flag to specify a volume mount. We will use the named volume and mount it to <Path>, which will capture all files created at the path.
+```
+docker run -v <Volume Name>:<Path> <Image Name>
+```
+
+```
+docker volume inspect todo-db
+[
+    {
+        "CreatedAt": "2022-04-28T10:17:43Z",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/todo-db/_data",
+        "Name": "todo-db",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+```
+The `Mountpoint` is the actual location on the disk where the data is stored.
+
+[Locating data volumes in windows](https://stackoverflow.com/questions/43181654/locating-data-volumes-in-docker-desktop-windows)
+
+[Docker tutorial](https://github.com/docker/getting-started)
+
+**Run the following command** 
+
+```
+docker run -d -p 80:80 docker/getting-started
+```
+
+```
+$ docker run -d -p 80:80 docker/getting-started
+Unable to find image 'docker/getting-started:latest' locally
+latest: Pulling from docker/getting-started
+df9b9388f04a: Pull complete
+5867cba5fcbd: Pull complete
+4b639e65cb3b: Pull complete
+061ed9e2b976: Pull complete
+bc19f3e8eeb1: Pull complete
+4071be97c256: Pull complete
+79b586f1a54b: Pull complete
+0c9732f525d6: Pull complete
+Digest: sha256:b558be874169471bd4e65bd6eac8c303b271a7ee8553ba47481b73b2bf597aae
+Status: Downloaded newer image for docker/getting-started:latest
+e5bb7cffdf62bd41d3c3ecbe8f0f94d140098f8292b47e4b09a32a9f0d975c43
+
+```
+- `-d`: run the container in detached mode (in the background)
+- `-p 80:80`: map port 80 of the host to port 80 in the container
+- `docker/getting-started`: the image to use
+
+
 
 _[Back to the top](#table-of-contents)_

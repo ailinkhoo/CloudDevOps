@@ -20,10 +20,12 @@
 - [Geeks for geeks](https://www.geeksforgeeks.org)
 - [Tutorials point](http://tutorialspoint.com)
 - [Plural sight](https://www.pluralsight.com)
+- [Vim](https://vim-adventures.com/)
 
 ## Helpful tools
 
 - [Chmod calculator](https://chmod-calculator.com/)
+- [Git Cheatsheet](http://git-cheatsheet.com/)
 
 ## Helpful articles
 
