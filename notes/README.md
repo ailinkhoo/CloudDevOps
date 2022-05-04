@@ -24,3 +24,5 @@ Below you will find links to the notes for each lesson.
 
 - [Git Guides](https://github.com/git-guides)
 
+- [W3schools Git](https://www.w3schools.com/git/default.asp?remote=github)
+

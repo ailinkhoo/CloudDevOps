@@ -156,6 +156,10 @@ Once updated, our production webserver will show the correct text, meaning we ha
 
 ## The Basics of Using Git 
 
+- Git is a version control system.
+- Git helps you keep track of code changes.
+- Git is used to collaborate on code.
+
 ### Understanding the Git File System
 
 `.git` is a hidden directory that is created when the current directory is transformed into a Git repository. It contains the configuration
@@ -411,6 +415,15 @@ $ git revert 7869f79d557a714cc4bacf4f180a571e52b13467
  1 file changed, 0 insertions(+), 0 deletions(-)
  delete mode 100644 README.md
 ```
+We can revert the latest commit using `git revert HEAD` (revert the latest change,  and then commit), adding the option `--no-edit` to skip the commit message editor (getting the default revert message):
+
+```
+$ git revert HEAD
+[tuesday 30df8d1] Revert "Revert "remove README""
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README.md
+```
+To revert to earlier commits, use `git revert HEAD~x` (x being a number. 1 going back one more, 2 going back two more, etc.)
 
 ## Containerization with Docker
 
