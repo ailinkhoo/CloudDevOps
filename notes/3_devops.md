@@ -230,7 +230,7 @@ We will set up the email address that we want to be used when tracking changes t
 
 ### Adding Files to a Project 
 
-`git add [file]`: snapshots the file in preparation for versioning, adding it to the staging area.
+`git add [file]`: snapshots the file in preparation for versioning, adding it to the staging area. Tell Git what files to keep track of. 
 
 `git status`: shows you what branch you're on, what files are in the working or staging directory, and any other important information.
 
@@ -367,16 +367,50 @@ shoes.txt
 ```
 We can use `git check-ignore` to see what files are being excluded.
 
-### Git Commands
-
-```
-git add .; git commit -m "Updates"
-```
-
-
-
 ## Tags, Branching, Merging and Reverting
 
+### Branching
+
+If we want to add an additional feature to a project, it could become problematic if we then discover a bug in our original code, and want to revert back without changing the new feature. 
+
+When working on a project, it's not going to operate in a very linear fashion. You're not always working on one thing that immediately follows the thing before it. You might be fixing multiple bugs while working on multiple new features, and you want some way of being able to work on all of those things simultaneously and to easily be able to switch between them. And so that is where branching comes in handy which is Git's way of working on different parts of the repository at the same time. 
+
+![branch1](images/branch1.jpg)
+
+**[Branching](https://cs50.harvard.edu/web/2020/notes/1/)** is a method of moving into a new direction when creating a new feature, and only combining this new feature with the main part of your code, or the main branch, once you’re finished. What we need to do is have head point to our new development branch so that when we commit new items to our database, it will keep the master branch free of any unfinished and untested features.
+
+![branch2](images/branch2.jpg)
+
+`git branch <branch name>`: creates a new branch of the project tree. 
+
+`git checkout <branch name>`: switch to another branch
+
+`HEAD`: pointer to the current branch being worked on. `git log` or `git status` or `git branch` will indicate which is the current branch. 
+ 
+### Merging
+
+`git merge`: combines the latest commits from two branches into one branch. 
+
+Merge conflicts occur when two people attempt to change a file in ways that conflict with each other. Git will automatically change the file into a format that clearly outlines what the conflict is. Here’s an example where the same line was added in two different ways:
+
+![conflict](images/conflict.png)
+
+Edit the file to resolve the conflict. Run `git add`, `git commit` and `git merge` to complete the merge process.
+
+### Reverting
+
+The `revert` command will create a commit that reverts the changes of the commit being targeted. You can find the name of the commit you want to revert using `git log`.
+
+```
+git revert <commit hash>
+```
+
+```
+$ git revert 7869f79d557a714cc4bacf4f180a571e52b13467
+[tuesday 2714361] Revert "remove README"
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 README.md
+```
 
 ## Containerization with Docker
 
@@ -424,6 +458,45 @@ For more examples and ideas, visit:
 
 ### Container Ports
 
+[Docker tutorial](https://github.com/docker/getting-started)
+
+**Run the following command** 
+
+```
+docker run -d -p 80:80 docker/getting-started
+```
+
+```
+$ docker run -d -p 80:80 docker/getting-started
+Unable to find image 'docker/getting-started:latest' locally
+latest: Pulling from docker/getting-started
+df9b9388f04a: Pull complete
+5867cba5fcbd: Pull complete
+4b639e65cb3b: Pull complete
+061ed9e2b976: Pull complete
+bc19f3e8eeb1: Pull complete
+4071be97c256: Pull complete
+79b586f1a54b: Pull complete
+0c9732f525d6: Pull complete
+Digest: sha256:b558be874169471bd4e65bd6eac8c303b271a7ee8553ba47481b73b2bf597aae
+Status: Downloaded newer image for docker/getting-started:latest
+e5bb7cffdf62bd41d3c3ecbe8f0f94d140098f8292b47e4b09a32a9f0d975c43
+
+```
+- `-d`: run the container in detached mode (in the background)
+- `-p 80:80`: map port 80 of the host to port 80 in the container
+- `docker/getting-started`: the image to use
+
+Under ports, it is shown that port 80 is bound to container port 80. 
+```
+$ docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED      STATUS          PORTS                NAMES
+e5bb7cffdf62   docker/getting-started   "/docker-entrypoint.…"   7 days ago   Up 17 seconds   0.0.0.0:80->80/tcp   relaxed_dewdney
+```
+
+![portmapping](images/portmapping.jpg)
+
+The container is listening on port 80. We can connect to the container using the port of the host which is specified as 80. 
 
 ### Container Volumes
 
@@ -454,36 +527,6 @@ docker volume inspect todo-db
 The `Mountpoint` is the actual location on the disk where the data is stored.
 
 [Locating data volumes in windows](https://stackoverflow.com/questions/43181654/locating-data-volumes-in-docker-desktop-windows)
-
-[Docker tutorial](https://github.com/docker/getting-started)
-
-**Run the following command** 
-
-```
-docker run -d -p 80:80 docker/getting-started
-```
-
-```
-$ docker run -d -p 80:80 docker/getting-started
-Unable to find image 'docker/getting-started:latest' locally
-latest: Pulling from docker/getting-started
-df9b9388f04a: Pull complete
-5867cba5fcbd: Pull complete
-4b639e65cb3b: Pull complete
-061ed9e2b976: Pull complete
-bc19f3e8eeb1: Pull complete
-4071be97c256: Pull complete
-79b586f1a54b: Pull complete
-0c9732f525d6: Pull complete
-Digest: sha256:b558be874169471bd4e65bd6eac8c303b271a7ee8553ba47481b73b2bf597aae
-Status: Downloaded newer image for docker/getting-started:latest
-e5bb7cffdf62bd41d3c3ecbe8f0f94d140098f8292b47e4b09a32a9f0d975c43
-
-```
-- `-d`: run the container in detached mode (in the background)
-- `-p 80:80`: map port 80 of the host to port 80 in the container
-- `docker/getting-started`: the image to use
-
 
 
 _[Back to the top](#table-of-contents)_
