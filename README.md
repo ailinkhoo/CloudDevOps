@@ -21,6 +21,7 @@
 - [Tutorials point](http://tutorialspoint.com)
 - [Plural sight](https://www.pluralsight.com)
 - [Vim](https://vim-adventures.com/)
+- [Networking](https://www.softwaretestinghelp.com/computer-networking-basics/)
 
 ## Helpful tools
 
@@ -32,6 +33,7 @@
 - [Cloud platform differences](https://docs.microsoft.com/en-us/azure/architecture/aws-professional/services)
 - [20 Minute Life checkup](https://mindfulambition.net/20-minute-life-checkup/)
 - [8 steps to Problem Solving](https://medium.com/@IliyanaStareva/8-step-framework-to-problem-solving-from-mckinsey-506823257b48)
+- [Basecamp](https://basecamp.com/books/getting-real)
 
 
 
