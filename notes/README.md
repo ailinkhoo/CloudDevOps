@@ -4,7 +4,7 @@ Below you will find links to the notes for each lesson.
 * [🐧 Lesson 1: Linux](1_linux.md)
 * [🐍 Lesson 2: Python](2_python.md)
 * [♾️ Lesson 3: DevOps](3_devops.md)
-* ☁️ Lesson 4: Azure Fundamentals
+* [☁️ Lesson 4: Azure Fundamentals](4_azure.md)
 * ☁️ Lesson 5: Microsoft Azure Administrator
 * 🅰️ Lesson 6: Automating Everything
 
