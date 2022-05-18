@@ -1,16 +1,19 @@
 >[Back to Index](README.md)
 
 ### Table of contents
-- [Introduction to Azure]
-- [Cloud Concepts]
-- [Azure Architecture]
-- [Compute]
-- [Networking]
-- [Storage]
-- [Database]
-- [Authentication and Authorization]
-- [Azure Solutions]
-- [Security]
+- [Introduction to Azure](#introduction-to-azure)
+- [Cloud Concepts](#cloud-concepts)
+- [Azure Architecture](#azure-architecture)
+- [Compute](#compute)
+- [Networking](#networking)
+- [Storage](#storage)
+- [Database](#database)
+- [Authentication and Authorization](#authentication-and-authorization)
+- [Azure Solutions](#azure-solutions)
+- [Security](#security)
+- [Privacy, Compliance and Trust](#privacy-compliance-and-trust)
+- [Pricing](#pricing)
+- [Support](#support)
 
 # Introduction to Azure
 
@@ -163,4 +166,38 @@ If a subscription stops, such as being unpaid, all the services within it stop t
 
 # Azure Solutions
 
+- **Internet of Things** is a network of millions of connected devices. Azure products create a managed and robust IoT solutions include IoT Hub, a Platform as a Service offering to collect and assemble all your data feeds from IoT devices, and IoT Central. The latter is a Software as a Service product that comes with tons of prepared data templates and dashboards to make sense of your IoT data. We also covered Azure Sphere, which is a native way of putting IoT solutions onto your IoT products and devices. 
+- **Big data** is processing a very large collection of data. Businesses want to use this to provide better service, better products, and ultimately be more competitive and profitable. Azure offers the Data Lake Analytics and HDInsights products to store, analyze, and make sense of big data.
+Cloud technology makes it feasible to analyze these vast datasets. For businesses, it can mean cost reduction, better decisions, and new products.
+-**Machine learning** comes with connotations of robots taking over the world. But on Azure, it is a lot more benign and useful. You use models to train an artificial intelligence by having it play it over and over again. Usually put under the machine learning category, the main Azure product is the Machine Learning Studio. It has premade models and a range of tools to make AI a little bit easier.
+- **Serverless** is an abstraction from servers. You are essentially using someone else's servers. You learned about three serverless Azure products. Azure Functions, which is a form of compute to run just a single function over and over again. Azure Logic Apps, which is a way to connect and integrate hundreds of different data feeds and applications. And finally, Event Grid, which is a network to pass events from application to application.
+- **DevOps**: Azure DevOps, which consists of Azure Boards, Azure Pipelines, Azure Repos, Azure Test Plans, and Azure Artifacts. You can choose to use one or more of these in workflow. We also looked at Azure DevTest Labs, which is a way to set up development and test environments easily and consistently using templates. And, finally, GitHub and GitHub Actions are another option for your DevOps Pipeline.
+
 # Security
+
+- **Defense in depth** It isn't enough to have a single layer of defense. Azure provides several layers of security such as physical, identity, firewalls, and data. Each layer builds your defense in depth. We then went through some tools to secure the networks on Azure. 
+
+-**Firewall** controls what data comes in, and out of a network. It does this with rules about the traffic. A DDoS attack is a lot of traffic
+from many different machines to a single point. Azure protects against this type of attack through its global network with no down time to your application. Finally, a network security group can be used to protect a single subnet, or single virtual machine.
+
+- The **Microsoft Defender for Cloud** is a portal within the Azure portal for you to monitor your security hygiene of all your Azure VM resources. You define policies, protect your resources more efficiently and can respond on any incidents.
+
+- **Azure Key Vault** is a secure way to share access to applications and resources with third parties
+without ever revealing any credentials. It scales globally, and keeps your keys and secrets secure.
+
+- **Azure Information Protection** is a way to share files and data inside and outside of Azure, and still maintain control over that data. You can control who views, edits, prints, and more. 
+
+- **Azure Sentinel**: Collect, aggregate, analyze and present security issues automatically for you to take action.
+
+- **Azure Dedicated Hosts** is a piece of Azure hardware that you are in control of to run your VMs on. You are guaranteed that it will not have any other VMs running on it except the ones you created. And you can even decide, within reason, when to apply updates to the machine. You still get cloud benefits like availability zones, vault isolation, high availability, and skillsets.
+
+- **Advanced threat protection** is a service to help you secure and manage users of your organization. Users are often the weakest link, and are targeted by attackers. ATP will monitor users' behavior, create a baseline of this behavior, and report on any anomalies from it. You can then make changes to policies and procedures based on this.
+
+
+# Security
+
+# Privacy, Compliance and Trust
+
+# Pricing
+
+# Support
