@@ -193,9 +193,6 @@ without ever revealing any credentials. It scales globally, and keeps your keys 
 
 - **Advanced threat protection** is a service to help you secure and manage users of your organization. Users are often the weakest link, and are targeted by attackers. ATP will monitor users' behavior, create a baseline of this behavior, and report on any anomalies from it. You can then make changes to policies and procedures based on this.
 
-
-# Security
-
 # Privacy, Compliance and Trust
 
 # Pricing

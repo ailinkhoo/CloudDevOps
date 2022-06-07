@@ -1,0 +1,44 @@
+---
+
+- hosts: localhost
+  tasks:
+
+  - name: Create a new file
+    file:  
+      path: ./peanuts.txt
+      state: touch
+
+  - name: Check OS version and save to file
+    shell: cat /etc/os-release > peanuts.txt
+
+  - name: Create new folders
+    file:
+      path: ./{{ item }}
+      state: directory
+    with_items:
+      - notes
+      - paintings
+  
+  - name: Copy a file into new folder
+    copy:
+      src: ./peanuts.txt
+      dest: ./notes
+
+  - name: Find the file and print out contents
+    shell: cat $(find . -name peanuts.txt)
+    register: findfile
+  - debug: var=findfile.stdout_lines
+
+  - name: Recursively remove directory
+    file:
+      path: ./{{ item }}
+      state: absent
+    with_items:
+      - notes
+      - paintings
+
+  - name: Check if removed
+    shell: ls
+    register: ls
+  - debug: var=ls.stdout_lines
+

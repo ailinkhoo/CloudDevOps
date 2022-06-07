@@ -1,0 +1,105 @@
+---
+
+- hosts: localhost
+  become: true
+  vars:
+    ansible_become_pass: password
+  
+  tasks:
+
+  - name: Add jen and william to all groups. Create user and group at same time. 
+    user:
+      name: "{{ item.name }}"
+      state: present
+      groups: "{{ item.groups }}"
+    loop:
+        - { name: 'jen', groups: 'management,sales,operation' }
+        - { name: 'william', groups: 'management,sales,operation' }
+
+  - name: Verify if users are added correctly
+    shell: groups jen william 
+    register: groupsprint
+  - debug: var=groupsprint.stdout_lines
+ 
+  - name: Remove the users
+    user:
+      name: "{{ item }}"
+      state: absent
+      remove: yes
+    loop:
+      - jen
+      - william
+
+  - name: Verify if users are removed
+    shell: groups jen william
+    register: remove
+    ignore_errors: yes
+  - debug: var=remove
+
+
+  # - name: Create required groups
+  #   group:
+  #     name: "{{ item }}"
+  #     state: present
+  #   loop:
+  #   - management
+  #   - sales
+  #   - operation
+
+  # - name: Create required users
+  #   user:
+  #     name: "{{ item }}"
+  #     state: absent
+  #   loop:
+  #   - jen
+  #   - william
+
+
+  # - name: Add jen and william to all groups
+  #   user:
+  #     name: "{{ item }}"
+  #     groups: management,sales,operation
+  #   loop:
+  #   - jen
+  #   - william
+
+  # alternative 1
+  # - name: Verify if users are removed
+  #   shell: grep -q 'jen\|william' /etc/passwd
+  #   register: remove
+  #   ignore_errors: yes
+  # - debug: var=remove
+
+
+  # alternative 2
+  # - name: Verify if users are removed
+  #   shell: |
+  #     if grep -q 'jen\|william' /etc/passwd
+  #     then
+  #         echo not successful
+  #     else
+  #         echo successful
+  #     fi
+  #   register: remove
+  #   with_items: [1, 2]
+
+  # - debug: var=remove
+
+  # alternative 3
+  # - name: Verify if jen is removed
+  #   user: 
+  #     name: jen
+  #     state: present
+  #   check_mode: yes
+  #   register: status
+    
+  # - debug: var=status
+
+  # - name: Verify if william is removed
+  #   user: 
+  #     name: william
+  #     state: present
+  #   check_mode: yes
+  #   register: status
+    
+  # - debug: var=status
