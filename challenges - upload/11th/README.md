@@ -53,4 +53,4 @@ Reference: https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes
   variable "agent_count" {
     default = 4 #Change node count here
 ```
-![Node count](images/nodecount.png)
+![Node count](images/nodecountchange.png)
