@@ -37,7 +37,7 @@ text = msg.as_string()
 
 # Send the message via our own SMTP server.
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-server.login("devopspractice88@gmail.com", "321*cba!")
+server.login("XX", "XX")
 server.send_message(msg)
 
 # terminating the session
